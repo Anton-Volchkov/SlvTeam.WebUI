@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -23,16 +26,18 @@ namespace WebApplication1.Areas.Identity.Pages.Account
         private readonly SignInManager<SlvTeamUser> _signInManager;
         private readonly UserManager<SlvTeamUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
+        private readonly IHostingEnvironment _appEnvironment;
 
 
         public RegisterModel(
             UserManager<SlvTeamUser> userManager,
             SignInManager<SlvTeamUser> signInManager,
-            ILogger<RegisterModel> logger)
+            ILogger<RegisterModel> logger, IHostingEnvironment appEnvironment)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _appEnvironment = appEnvironment;
         }
 
         [BindProperty]
@@ -80,6 +85,14 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             [Display(Name = "Повторите пароль")]
             [Compare("Password", ErrorMessage = "Пароли не совпадают.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [Display(Name = "О вас")]
+            public string AboutAs { get; set; }
+
+
+            [Display(Name = "Фотография")]
+            public IFormFile ImagePath { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -94,32 +107,21 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+                var path = "/UserImages/" + Input.ImagePath.FileName;
+                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                {
+                    await Input.ImagePath.CopyToAsync(fileStream);
+                }
+
                 var user = new SlvTeamUser(Input.Login, Input.FirstName, Input.LastName, Input.Phone, Input.Email,
-                                        Input.Adress,"123");
+                                        Input.Adress,Input.ImagePath.FileName,Input.AboutAs);
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = user.Id, code = code },
-                        protocol: Request.Scheme);
-
-                  
-
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email });
-                    }
-                    else
-                    {
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
-                    }
                 }
                 foreach (var error in result.Errors)
                 {

@@ -1,4 +1,17 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function AddCoords() {
+    navigator.geolocation.getCurrentPosition(
+        function (position) {
+            $.ajax({
+                type: "POST",
+                url: "/Location/SetLocation/",
+                data: { lat: position.coords.latitude, lon: position.coords.longitude },
 
-// Write your JavaScript code.
+                success: function (data) {
+                    location.reload();
+                },
+                error: function () {
+                }
+            });
+        }
+    );
+}

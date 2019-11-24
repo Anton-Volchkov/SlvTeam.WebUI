@@ -16,13 +16,17 @@ namespace SlvTeam.Domain.Entities
 
         public string ImagePath { get; set; }
 
+        public string AboutAs { get; set; }
+
+        public string Location{ get; set; }
+     
         private SlvTeamUser()
         {
             RegisterDate = DateTime.UtcNow;
         }
 
         public SlvTeamUser(string login, string firstName, string lastName, string phone, string email,
-                        string address, string imagePath) : this()
+                        string address, string imagePath, string aboutAs) : this()
         {
             SetUserName(login);
             SetFirstName(firstName);
@@ -31,8 +35,19 @@ namespace SlvTeam.Domain.Entities
             SetEmail(email);
             SetAddress(address);
             SetUserImagePath(imagePath);
+            AboutAs = aboutAs;
 
             //TODO: reg time
+        }
+
+        private void SetAboutAs(string info)
+        {
+            if (string.IsNullOrWhiteSpace(info))
+            {
+                throw new ArgumentException("Inbfo about as is empty", nameof(info));
+            }
+
+            AboutAs = info;
         }
 
         private void SetUserImagePath(string path)

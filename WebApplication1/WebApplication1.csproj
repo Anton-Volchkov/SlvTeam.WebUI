@@ -21,4 +21,9 @@
     <ProjectReference Include="..\SlvTeam.Domain\SlvTeam.Domain.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="wwwroot\UserImages\" />
+  </ItemGroup>
+
 </Project>

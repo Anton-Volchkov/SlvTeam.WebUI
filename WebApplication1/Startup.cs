@@ -1,8 +1,10 @@
     using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+    using System.Reflection;
+    using System.Threading.Tasks;
+    using MediatR;
+    using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +14,7 @@ using WebApplication1.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+    using SlvTeam.Application.Users.Commands.AddLocation;
     using SlvTeam.Domain.Entities;
 
     namespace WebApplication1
@@ -44,7 +47,10 @@ using Microsoft.Extensions.Hosting;
                         options.Password.RequiredUniqueChars = 0;
                     })
                     .AddEntityFrameworkStores<ApplicationDbContext>();
-          
+
+
+            services.AddMediatR(typeof(AddLocationCommand).GetTypeInfo().Assembly);
+
             services.AddControllersWithViews();
           
             services.AddRazorPages();
