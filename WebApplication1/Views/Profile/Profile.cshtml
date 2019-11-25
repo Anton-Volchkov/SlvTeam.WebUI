@@ -1,0 +1,51 @@
+﻿@model SlvTeam.Domain.Entities.SlvTeamUser;
+@{
+    ViewData["Title"] = "Профиль";
+}
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <img src="~/UserImages/@Model.ImagePath" alt="@Model.ImagePath" class="img-fluid" />
+            <br />
+            <br />
+
+            <a class="btn btn-info col-md-12" asp-controller="Profile" asp-action="GetEditProfilePage">Редактировать профиль</a>
+
+        </div>
+
+
+        <div class="col-md-8">
+            <table class="table">
+                <tr>
+                    <th>Имя</th>
+                    <td>@Model.FirstName</td>
+                </tr>
+                <tr>
+                    <th>Фамилия</th>
+                    <td>@Model.LastName</td>
+                </tr>
+                <tr>
+                    <th>О себе</th>
+                    <td>@Model.AboutAs</td>
+                </tr>
+                <tr>
+                    <th>Последний раз отмечался здесь</th>
+                    @if (string.IsNullOrWhiteSpace(Model.Location))
+                    {
+                        <td><div id="textCoords"><button class="btn btn-success" onclick="AddCoords()"> Добавить локацию </button></div></td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Model.Location
+                        <br />
+                        <br />
+                        <button class="btn btn-success" onclick="AddCoords()"> Обновить локацию</button>
+                    </td>
+                }
+                </tr>
+
+            </table>
+        </div>
+    </div>

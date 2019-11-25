@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{5423C137-61C3-4D27-B055-59ADE3C680AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{5423C137-61C3-4D27-B055-59ADE3C680AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlvTeam.Application", "SlvTeam.Application\SlvTeam.Application.csproj", "{89E796A2-15E1-4033-A32F-8B5B2F30B229}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SlvTeam.Application", "SlvTeam.Application\SlvTeam.Application.csproj", "{89E796A2-15E1-4033-A32F-8B5B2F30B229}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlvTeam.DataAccess", "SlvTeam.DataAccess\SlvTeam.DataAccess.csproj", "{1194777A-8753-490C-89E5-9469990FCA50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SlvTeam.DataAccess", "SlvTeam.DataAccess\SlvTeam.DataAccess.csproj", "{1194777A-8753-490C-89E5-9469990FCA50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlvTeam.Domain", "SlvTeam.Domain\SlvTeam.Domain.csproj", "{2A3ADABC-1BB7-4461-A763-74DF6665B81A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SlvTeam.Domain", "SlvTeam.Domain\SlvTeam.Domain.csproj", "{2A3ADABC-1BB7-4461-A763-74DF6665B81A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

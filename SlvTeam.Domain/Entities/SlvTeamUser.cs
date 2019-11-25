@@ -20,11 +20,13 @@ namespace SlvTeam.Domain.Entities
 
         public string Location{ get; set; }
      
-        private SlvTeamUser()
+        //TODO: Попровить модификаторы доступа.
+        public SlvTeamUser()
         {
             RegisterDate = DateTime.UtcNow;
         }
 
+      
         public SlvTeamUser(string login, string firstName, string lastName, string phone, string email,
                         string address, string imagePath, string aboutAs) : this()
         {
@@ -40,7 +42,7 @@ namespace SlvTeam.Domain.Entities
             //TODO: reg time
         }
 
-        private void SetAboutAs(string info)
+        public void SetAboutAs(string info)
         {
             if (string.IsNullOrWhiteSpace(info))
             {
@@ -50,7 +52,7 @@ namespace SlvTeam.Domain.Entities
             AboutAs = info;
         }
 
-        private void SetUserImagePath(string path)
+        public void SetUserImagePath(string path)
         {
             if (string.IsNullOrWhiteSpace(path))
             {
@@ -60,7 +62,7 @@ namespace SlvTeam.Domain.Entities
             ImagePath = path;
         }
 
-        private void SetUserName(string login)
+        public void SetUserName(string login)
         {
             if (string.IsNullOrWhiteSpace(login))
             {

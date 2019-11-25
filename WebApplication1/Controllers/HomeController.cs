@@ -33,13 +33,6 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        [Authorize]
-        public async Task<IActionResult> Profile()
-        {
-            var user = await _manager.GetUserAsync(User);
-            return View(user);
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
