@@ -18,13 +18,13 @@ using WebApplication1.Models;
 namespace WebApplication1.Controllers
 {
     [Authorize]
-    public class ProfileController : Controller
+    public class ProfilesController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly UserManager<SlvTeamUser> _manager;
         private readonly ApplicationDbContext _db;
         private readonly IMediator _mediator;
-        public ProfileController(ILogger<HomeController> logger, UserManager<SlvTeamUser> manager, ApplicationDbContext db, IMediator mediator)
+        public ProfilesController(ILogger<HomeController> logger, UserManager<SlvTeamUser> manager, ApplicationDbContext db, IMediator mediator)
         {
             _logger = logger;
             _manager = manager;

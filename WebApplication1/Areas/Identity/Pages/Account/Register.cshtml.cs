@@ -26,13 +26,13 @@ namespace WebApplication1.Areas.Identity.Pages.Account
         private readonly SignInManager<SlvTeamUser> _signInManager;
         private readonly UserManager<SlvTeamUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IHostingEnvironment _appEnvironment;
+        private readonly IWebHostEnvironment _appEnvironment;
 
 
         public RegisterModel(
             UserManager<SlvTeamUser> userManager,
             SignInManager<SlvTeamUser> signInManager,
-            ILogger<RegisterModel> logger, IHostingEnvironment appEnvironment)
+            ILogger<RegisterModel> logger, IWebHostEnvironment appEnvironment)
         {
             _userManager = userManager;
             _signInManager = signInManager;

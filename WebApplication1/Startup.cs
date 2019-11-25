@@ -1,4 +1,7 @@
+using System;
 using System.Reflection;
+using Hangfire;
+using Hangfire.MemoryStorage;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using SlvTeam.Application.Users.Commands.AddLocation;
 using SlvTeam.Domain.Entities;
 using WebApplication1.Data;
+using WebApplication1.Helpers;
 
 namespace WebApplication1
 {
@@ -41,6 +45,7 @@ namespace WebApplication1
                     })
                     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddHangfire(config => { config.UseMemoryStorage(); });
 
             services.AddMediatR(typeof(AddLocationCommand).GetTypeInfo().Assembly);
 
@@ -65,6 +70,9 @@ namespace WebApplication1
                 app.UseHsts();
             }
 
+            var options = new BackgroundJobServerOptions { WorkerCount = Environment.ProcessorCount * 2 };
+            app.UseHangfireServer(options);
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -75,17 +83,27 @@ namespace WebApplication1
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                                             "default",
-                                             "{controller=Home}/{action=Index}/{id?}");
+               
 
                 endpoints.MapAreaControllerRoute(
                                                  "Admin",
                                                  "Admin",
-                                                 "Admin/{controller=Home}/{action=Index}/{id?}");
+                                                 "Admin/{Controller=Home}/{Action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                                             "default",
+                                             "{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapRazorPages();
             });
+
+            CreateRole();
+
+        }
+
+        public void CreateRole()
+        {
+            BackgroundJob.Enqueue<CreateRolesTask>(x => x.Execute());
         }
     }
 }

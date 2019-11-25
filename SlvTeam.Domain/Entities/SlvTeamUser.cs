@@ -19,6 +19,8 @@ namespace SlvTeam.Domain.Entities
         public string AboutAs { get; set; }
 
         public string Location{ get; set; }
+
+        public bool IsSlvTeam { get; set; }
      
         //TODO: Попровить модификаторы доступа.
         public SlvTeamUser()
