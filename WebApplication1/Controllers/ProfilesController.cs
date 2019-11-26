@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using SlvTeam.Application.Profiles.Commands.EditProfile;
 using SlvTeam.Application.Profiles.Queries.GetProfileById;
 using SlvTeam.Application.Profiles.Queries.GetSlvTeamProfiles;
+using SlvTeam.Application.Questions.Queries.GetAnsweredQuestion;
 using SlvTeam.Domain.Entities;
 using SlvTeam.Domain.Models;
 using WebApplication1.Data;
@@ -77,8 +78,15 @@ namespace WebApplication1.Controllers
             }
 
             var user = await _mediator.Send(new GetProfileByIdCommand() { UserID = userID });
+            var questions = _mediator.Send(new GetAnsweredQuestionCommand() { UserID = user.Id });
 
-            return View("ProfileDetail", user);
+            var model = new UserProfileModel()
+            {
+                Questions = questions.Result,
+                User = user
+            };
+
+            return View("ProfileDetail", model);
         }
 
         [Authorize]
@@ -98,8 +106,16 @@ namespace WebApplication1.Controllers
         [Authorize]
         public async Task<IActionResult> Profile()
         {
+            
             var user = await _manager.GetUserAsync(User);
-            return View(user);
+            var questions = _mediator.Send(new GetAnsweredQuestionCommand() { UserID = user.Id });
+
+            var model = new UserProfileModel()
+            {
+                Questions = questions.Result,
+                User = user
+            };
+            return View(model);
         }
 
     }

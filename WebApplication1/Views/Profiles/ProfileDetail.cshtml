@@ -1,4 +1,4 @@
-﻿@model SlvTeam.Domain.Entities.SlvTeamUser;
+﻿@model SlvTeam.Domain.Models.UserProfileModel
 @{
     ViewData["Title"] = "Профиль";
 }
@@ -6,8 +6,8 @@
 
 <div class="row">
     <div class="col-md-4">
-        <img src="~/UserImages/@Model.ImagePath" alt="@Model.ImagePath" class="img-fluid" />
-        
+        <img src="~/UserImages/@Model.User.ImagePath" alt="@Model.User.ImagePath" class="img-fluid"/>
+
     </div>
 
 
@@ -15,33 +15,33 @@
         <table class="table">
             <tr>
                 <th>Имя</th>
-                <td>@Model.FirstName</td>
+                <td>@Model.User.FirstName</td>
             </tr>
             <tr>
                 <th>Фамилия</th>
-                <td>@Model.LastName</td>
+                <td>@Model.User.LastName</td>
             </tr>
             <tr>
                 <th>О себе</th>
-                <td>@Model.AboutAs</td>
+                <td>@Model.User.AboutAs</td>
             </tr>
             <tr>
                 <th>Последний раз отмечался здесь</th>
-                @if (string.IsNullOrWhiteSpace(Model.Location))
+                @if(string.IsNullOrWhiteSpace(Model.User.Location))
                 {
                     <td>Местоположение не установлена</td>
                 }
                 else
                 {
                     <td>
-                        @Model.Location
+                        @Model.User.Location
                     </td>
                 }
             </tr>
 
         </table>
     </div>
-    
+
     <div class="jumbotron  mb-6">
         <h1 class="display-4">Задайте анонимный вопрос этому пользователю!</h1>
         <hr class="my-4">
@@ -49,10 +49,30 @@
             <div class="form-group">
                 <br/>
                 <textarea required="" placeholder="Ваш вопрос" class="form-control" name="textQuestion" rows="3"></textarea>
-                <input type="hidden" name="userID" value="@Model.Id"/>
+                <input type="hidden" name="userID" value="@Model.User.Id"/>
             </div>
             <button type="submit" class="btn btn-primary">Отправить</button>
         </form>
     </div>
     <br/>
+    <hr/>
+    <h4>Ответы на вопросы</h4>
+
+    @foreach(var question in Model.Questions)
+    {
+        <div class="card p-3 text-right col-md-12">
+            <blockquote class="blockquote mb-0">
+                <p>@question.TextAnswer</p>
+                <footer class="blockquote-footer">
+                    <small class="text-muted">
+                        @question.TextQuestion
+                    </small>
+                    <br />
+                    <small>@question.TimeAnswer</small>
+                </footer>
+            </blockquote>
+        </div>
+        <br/>
+    }
+
 </div>
