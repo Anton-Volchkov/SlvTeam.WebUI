@@ -56,23 +56,33 @@
     </div>
     <br/>
     <hr/>
-    <h4>Ответы на вопросы</h4>
-
-    @foreach(var question in Model.Questions)
-    {
-        <div class="card p-3 text-right col-md-12">
-            <blockquote class="blockquote mb-0">
-                <p>@question.TextAnswer</p>
-                <footer class="blockquote-footer">
-                    <small class="text-muted">
-                        @question.TextQuestion
-                    </small>
-                    <br />
-                    <small>@question.TimeAnswer</small>
-                </footer>
-            </blockquote>
-        </div>
-        <br/>
-    }
-
+    <br />
 </div>
+<h4 class="text-center">
+    Ответы на вопросы
+    <br />
+    @if(Model.Questions.Length == 0)
+    {
+        <div class="text-center">
+            <h4 class="text-info col-md-12">Этот пользователь ещё не отвечал на вопросы...</h4>
+        </div>
+    }
+</h4>
+<br />
+<br />
+@foreach(var question in Model.Questions)
+{
+    <div class="card p-3 text-right col-md-12">
+        <blockquote class="blockquote mb-0">
+            <p>@question.TextAnswer</p>
+            <footer class="blockquote-footer">
+                <small class="text-muted">
+                    @question.TextQuestion
+                </small>
+                <br/>
+                <small>@question.TimeAnswer</small>
+            </footer>
+        </blockquote>
+    </div>
+    <br/>
+}

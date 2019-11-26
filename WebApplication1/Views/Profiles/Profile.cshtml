@@ -1,74 +1,90 @@
-﻿@model SlvTeam.Domain.Models.UserProfileModel 
+﻿@model SlvTeam.Domain.Models.UserProfileModel
 @{
     ViewData["Title"] = "Профиль";
 }
 
 
-    <div class="row">
-        <div class="col-md-4">
-            <img src="~/UserImages/@Model.User.ImagePath" alt="@Model.User.ImagePath" class="img-fluid" />
-            <br />
-            <br />
-
-            <a class="btn btn-info col-md-12" asp-controller="Profiles" asp-action="EditProfile">Редактировать профиль</a>
-
-        </div>
-
-
-        <div class="col-md-8">
-            <table class="table">
-                <tr>
-                    <th>Имя</th>
-                    <td>@Model.User.FirstName</td>
-                </tr>
-                <tr>
-                    <th>Фамилия</th>
-                    <td>@Model.User.LastName</td>
-                </tr>
-                <tr>
-                    <th>О себе</th>
-                    <td>@Model.User.AboutAs</td>
-                </tr>
-                <tr>
-                    <th>Последний раз отмечался здесь</th>
-                    @if (string.IsNullOrWhiteSpace(Model.User.Location))
-                    {
-                        <td><div id="textCoords"><button class="btn btn-success" onclick="AddCoords()"> Добавить локацию </button></div></td>
-                    }
-                    else
-                    {
-                        <td>
-                            @Model.User.Location
-                            <br />
-                            <br />
-                            <button class="btn btn-success" onclick="AddCoords()"> Обновить локацию</button>
-                        </td>
-                    }
-                </tr>
-            </table>
-        </div>
+<div class="row">
+    <div class="col-md-4">
+        <img src="~/UserImages/@Model.User.ImagePath" alt="@Model.User.ImagePath" class="img-fluid"/>
         <br/>
-        <hr/>
-        <h4>Ответы на вопросы</h4>
-        
-        @foreach(var question in Model.Questions)
-        {
-            <div class="card p-3 text-right col-md-12">
-                <blockquote class="blockquote mb-0">
-                    <p>@question.TextAnswer</p>
-                    <footer class="blockquote-footer">
-                        <small class="text-muted">
-                            @question.TextQuestion
-                        </small>
-                        <br />
-                        <small>@question.TimeAnswer</small>
-                    </footer>
-                    <form method="post" asp-controller="Questions" asp-action="DeleteQuestion" asp-route-returnUrl="@Url.Action("Profile","Profiles")" asp-route-questionID="@question.Id">
-                        <button type="submit"  class="btn btn-danger">Удалить</button>
-                    </form>
-                </blockquote>
-            </div>
-            <br/>
-        }
+        <br/>
+
+        <a class="btn btn-info col-md-12" asp-controller="Profiles" asp-action="EditProfile">Редактировать профиль</a>
 
     </div>
+
+
+    <div class="col-md-8">
+        <table class="table">
+            <tr>
+                <th>Имя</th>
+                <td>@Model.User.FirstName</td>
+            </tr>
+            <tr>
+                <th>Фамилия</th>
+                <td>@Model.User.LastName</td>
+            </tr>
+            <tr>
+                <th>О себе</th>
+                <td>@Model.User.AboutAs</td>
+            </tr>
+            <tr>
+                <th>Последний раз отмечался здесь</th>
+                @if(string.IsNullOrWhiteSpace(Model.User.Location))
+                {
+                    <td>
+                        <div id="textCoords">
+                            <button class="btn btn-success" onclick="AddCoords()"> Добавить локацию </button>
+                        </div>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Model.User.Location
+                        <br/>
+                        <br/>
+                        <button class="btn btn-success" onclick="AddCoords()"> Обновить локацию</button>
+                    </td>
+                }
+            </tr>
+        </table>
+    </div>
+    <br/>
+    <hr/>
+    <br />
+</div>
+<h4 class="text-center">
+    Ответы на вопросы
+    <br />
+    @if(Model.Questions.Length == 0)
+    {
+        <div class="text-center">
+            <h4 class="text-info col-md-12">Этот пользователь ещё не отвечал на вопросы...</h4>
+        </div>
+    }
+</h4>
+<br />
+<br />
+@foreach(var question in Model.Questions)
+{
+    <div class="card p-3 text-right col-md-12">
+        <blockquote class="blockquote mb-0">
+            <p>@question.TextAnswer</p>
+            <footer class="blockquote-footer">
+                <small class="text-muted">
+                    @question.TextQuestion
+                </small>
+                <br/>
+                <small>@question.TimeAnswer</small>
+            </footer>
+            <form method="post" asp-controller="Questions" asp-action="DeleteQuestion" asp-route-returnUrl="@Url.Action("Profile", "Profiles")" asp-route-questionID="@question.Id">
+                <button type="submit" class="btn btn-danger">Удалить</button>
+            </form>
+        </blockquote>
+    </div>
+    <br/>
+}
+
+
