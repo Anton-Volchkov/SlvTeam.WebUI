@@ -2,12 +2,17 @@
 
 namespace SlvTeam.DataAccess.Migrations
 {
-    public partial class AddColumnLocation : Migration
+    public partial class AddColumnWithDate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "Location",
+                name: "TimeAnswer",
+                table: "Questions",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "RegisterDate",
                 table: "AspNetUsers",
                 nullable: true);
         }
@@ -15,7 +20,11 @@ namespace SlvTeam.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Location",
+                name: "TimeAnswer",
+                table: "Questions");
+
+            migrationBuilder.DropColumn(
+                name: "RegisterDate",
                 table: "AspNetUsers");
         }
     }

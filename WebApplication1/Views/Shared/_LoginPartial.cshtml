@@ -3,33 +3,38 @@
 @inject SignInManager<SlvTeamUser> SignInManager
 @inject UserManager<SlvTeamUser> UserManager
 
-<ul class="navbar-nav">
-    @if(User.IsInRole("Admin"))
-    {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Админ-панель</a>
-        </li>
-    }
-    @if(SignInManager.IsSignedIn(User))
-    {
-        <li class="nav-item">
-            <form class="form-inline">
-                <button class="nav-link btn btn-link text-dark" asp-area="" asp-controller="Profiles" asp-action="Profile">Мой профиль</button>
-            </form>
-        </li>
-        <li class="nav-item">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">Выйти</button>
-            </form>
-        </li>
-    }
-    else
-    {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Войти</a>
-        </li>
-    }
-</ul>
+    <ul class="navbar-nav">
+        @if (User.IsInRole("Admin"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Админ-панель</a>
+            </li>
+        }
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <li class="nav-item">
+                <form class="form-inline">
+                    <button class="nav-link btn btn-link text-dark" asp-area="" asp-controller="Profiles" asp-action="Profile">Мой профиль</button>
+                </form>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline">
+                    <button class="nav-link btn btn-link text-dark" asp-area="" asp-controller="Questions" asp-action="UnansweredQuestion">Мои вопросы</button>
+                </form>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="nav-link btn btn-link text-dark">Выйти</button>
+                </form>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Войти</a>
+            </li>
+        }
+    </ul>

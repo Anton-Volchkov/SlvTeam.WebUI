@@ -107,14 +107,25 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var path = "/UserImages/" + Input.ImagePath.FileName;
-                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                string FileName = "";
+                if(Input.ImagePath is null)
                 {
-                    await Input.ImagePath.CopyToAsync(fileStream);
+                    FileName = "NoPhoto";
+                }
+                else
+                {
+                    var path = "/UserImages/" + Input.ImagePath.FileName;
+                    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                    {
+                        await Input.ImagePath.CopyToAsync(fileStream);
+                    }
+
+                    FileName = Input.ImagePath.FileName;
+
                 }
 
                 var user = new SlvTeamUser(Input.Login, Input.FirstName, Input.LastName, Input.Phone, Input.Email,
-                                        Input.Adress,Input.ImagePath.FileName,Input.AboutAs);
+                                        Input.Adress,FileName,Input.AboutAs);
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

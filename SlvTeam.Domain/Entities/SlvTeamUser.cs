@@ -12,7 +12,7 @@ namespace SlvTeam.Domain.Entities
 
         public string Address { get; private set; }
 
-        public DateTime RegisterDate { get; }
+        public string RegisterDate { get; set; }
 
         public string ImagePath { get; set; }
 
@@ -21,11 +21,10 @@ namespace SlvTeam.Domain.Entities
         public string Location{ get; set; }
 
         public bool IsSlvTeam { get; set; }
-     
-        //TODO: Попровить модификаторы доступа.
+        
         public SlvTeamUser()
         {
-            RegisterDate = DateTime.UtcNow;
+            RegisterDate = DateTime.UtcNow.ToString("G");
         }
 
       

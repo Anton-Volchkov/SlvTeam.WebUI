@@ -18,6 +18,7 @@ namespace WebApplication1.Areas.Admin.Controllers
     {
         private readonly IMediator _mediator;
         private readonly UserManager<SlvTeamUser> _manager;
+
         public ProfilesController(IMediator mediator, UserManager<SlvTeamUser> manager)
         {
             _mediator = mediator;

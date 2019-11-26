@@ -41,4 +41,18 @@
 
         </table>
     </div>
+    
+    <div class="jumbotron  mb-6">
+        <h1 class="display-4">Задайте анонимный вопрос этому пользователю!</h1>
+        <hr class="my-4">
+        <form asp-antiforgery="true" asp-action="CreateQuestion" asp-controller="Questions">
+            <div class="form-group">
+                <br/>
+                <textarea required="" placeholder="Ваш вопрос" class="form-control" name="textQuestion" rows="3"></textarea>
+                <input type="hidden" name="userID" value="@Model.Id"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+    </div>
+    <br/>
 </div>

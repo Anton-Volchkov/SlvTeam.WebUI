@@ -10,8 +10,8 @@ using WebApplication1.Data;
 namespace SlvTeam.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191124145246_AddColumnLocation")]
-    partial class AddColumnLocation
+    [Migration("20191126143804_AddColumnWithDate")]
+    partial class AddColumnWithDate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -152,6 +152,30 @@ namespace SlvTeam.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("SlvTeam.Domain.Entities.Question", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FromUserID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TextAnswer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TextQuestion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TimeAnswer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Questions");
+                });
+
             modelBuilder.Entity("SlvTeam.Domain.Entities.SlvTeamUser", b =>
                 {
                     b.Property<string>("Id")
@@ -183,6 +207,9 @@ namespace SlvTeam.DataAccess.Migrations
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsSlvTeam")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -211,6 +238,9 @@ namespace SlvTeam.DataAccess.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("RegisterDate")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");

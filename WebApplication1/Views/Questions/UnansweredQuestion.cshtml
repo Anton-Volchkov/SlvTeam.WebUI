@@ -1,0 +1,26 @@
+﻿@model SlvTeam.Domain.Entities.Question[]
+
+@if(@Model.Length > 0)
+{
+@foreach(var question in Model)
+ {
+     <form method="post">
+         <span>Вопрос: @question.TextQuestion</span>
+
+         <div class="form-group">
+             <textarea class="form-control" required name="textAnswer" rows="3"></textarea>
+         </div>
+         <button type="submit" asp-controller="Questions" asp-action="SetAnswerOnQuestion" asp-route-questionID="@question.Id" class="btn btn-primary">Ответить</button>
+
+         <form method="post">
+             <input type="type" hidden name="questionID" value="@question.Id" />
+             <button type="submit" asp-controller="Questions" asp-action="DeleteQuestion" class="btn btn-primary">Удалить</button>
+         </form>
+
+     </form>
+ }
+}
+else
+{
+<h5>У вас нет неотвеченных вопросов!</h5>
+}
