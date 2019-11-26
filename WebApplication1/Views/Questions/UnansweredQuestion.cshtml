@@ -13,9 +13,8 @@
              </div>
              <button type="submit" asp-controller="Questions" asp-action="SetAnswerOnQuestion" asp-route-questionID="@question.Id" class="btn btn-primary">Ответить</button>
 
-             <form method="post">
-                 <input type="type" hidden name="questionID" value="@question.Id"/>
-                 <button type="submit" asp-controller="Questions" asp-action="DeleteQuestion" class="btn btn-danger">Удалить</button>
+             <form method="post" asp-controller="Questions" asp-action="DeleteQuestion" asp-route-returnUrl="@Url.Action("UnansweredQuestion","Questions")" asp-route-questionID="@question.Id">
+                 <button type="submit"  class="btn btn-danger">Удалить</button>
              </form>
          </form>
          <br />

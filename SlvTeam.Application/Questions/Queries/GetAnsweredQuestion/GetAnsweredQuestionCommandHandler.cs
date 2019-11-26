@@ -20,7 +20,7 @@ namespace SlvTeam.Application.Questions.Queries.GetAnsweredQuestion
         }
         public Task<Question[]> Handle(GetAnsweredQuestionCommand request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_db.Questions.Where(x => x.FromUserID == request.UserID && !string.IsNullOrWhiteSpace(x.TimeAnswer)).ToArray());
+            return Task.FromResult(_db.Questions.Where(x => x.FromUserID == request.UserID && !string.IsNullOrWhiteSpace(x.TextAnswer)).ToArray());
         }
     }
 }

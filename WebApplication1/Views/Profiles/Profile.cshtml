@@ -63,7 +63,9 @@
                         <br />
                         <small>@question.TimeAnswer</small>
                     </footer>
-                    <a class="btn btn-danger">Удалить</a>
+                    <form method="post" asp-controller="Questions" asp-action="DeleteQuestion" asp-route-returnUrl="@Url.Action("Profile","Profiles")" asp-route-questionID="@question.Id">
+                        <button type="submit"  class="btn btn-danger">Удалить</button>
+                    </form>
                 </blockquote>
             </div>
             <br/>

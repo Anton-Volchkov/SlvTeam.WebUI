@@ -37,11 +37,11 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteQuestion(int questionID)
+        public async Task<IActionResult> DeleteQuestion(int questionID, string returnUrl = "")
         {
             await _mediator.Send(new DeleteQuestionByIdCommand(){QuestionID = questionID});
 
-            return RedirectToAction("UnansweredQuestion", "Questions");
+            return LocalRedirect(returnUrl);
         }
 
         [HttpPost]
