@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,11 +17,13 @@ namespace WebApplication1.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly UserManager<SlvTeamUser> _manager;
+        private readonly IMediator _mediator;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<SlvTeamUser> manager)
+        public HomeController(ILogger<HomeController> logger, UserManager<SlvTeamUser> manager,IMediator mediator)
         {
             _logger = logger;
             _manager = manager;
+            _mediator = mediator;
         }
 
         public IActionResult Index()

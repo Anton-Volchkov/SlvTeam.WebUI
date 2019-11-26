@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SlvTeam.Application.Profiles.Commands.EditProfile;
+using SlvTeam.Application.Profiles.Queries.GetProfileById;
+using SlvTeam.Application.Profiles.Queries.GetSlvTeamProfiles;
 using SlvTeam.Domain.Entities;
 using SlvTeam.Domain.Models;
 using WebApplication1.Data;
@@ -17,7 +19,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    [Authorize]
+  
     public class ProfilesController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -32,7 +34,15 @@ namespace WebApplication1.Controllers
             _mediator = mediator;
         }
 
-        
+
+        [HttpGet]
+        public IActionResult GetSlvTeam()
+        {
+            var slvTeamUsers = _mediator.Send(new GetSlvTeamProfilesCommand()).Result;
+            return View("SlvTeamProfiles", slvTeamUsers);
+        }
+
+        [Authorize]
         public async Task<IActionResult> GetEditProfilePage()
         {
             var user = await _manager.GetUserAsync(User);
@@ -51,6 +61,15 @@ namespace WebApplication1.Controllers
             return View("EditProfile", model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ProfileDetail(string userID)
+        {
+            var user = await _mediator.Send(new GetProfileByIdCommand() { UserID = userID });
+
+            return View("ProfileDetail", user);
+        }
+
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> EditProfile([FromForm] EditProfileViewModel newUser)
         {
@@ -61,10 +80,10 @@ namespace WebApplication1.Controllers
                Model = newUser
             });
 
-            return RedirectToAction("Profile", "Profile");
+            return RedirectToAction("Profile", "Profiles");
         }
 
-
+        [Authorize]
         public async Task<IActionResult> Profile()
         {
             var user = await _manager.GetUserAsync(User);
