@@ -6,21 +6,16 @@
 
 <div class="row">
     <div class="col-md-4">
-        <img src="~/UserImages/@Model.User.ImagePath" alt="@Model.User.ImagePath" class="img-fluid"/>
-
+        <div class="polaroid">
+            <img src="~/UserImages/@Model.User.ImagePath" alt="@Model.User.ImagePath" class="img-fluid" />
+        </div>
     </div>
-
+  
 
     <div class="col-md-8">
+        <br />
+        <h4>@Model.User.FirstName @Model.User.LastName </h4>
         <table class="table">
-            <tr>
-                <th>Имя</th>
-                <td>@Model.User.FirstName</td>
-            </tr>
-            <tr>
-                <th>Фамилия</th>
-                <td>@Model.User.LastName</td>
-            </tr>
             <tr>
                 <th>О себе</th>
                 <td>@Model.User.AboutAs</td>
@@ -80,19 +75,22 @@
 </h4>
 <br />
 <br />
-@foreach(var question in Model.Questions)
-{
-    <div class="card p-3 text-right col-md-12">
-        <blockquote class="blockquote mb-0">
-            <p>@question.TextAnswer</p>
-            <footer class="blockquote-footer">
-                <small class="text-muted">
-                    @question.TextQuestion
-                </small>
-                <br/>
-                <small>@question.TimeAnswer</small>
-            </footer>
-        </blockquote>
-    </div>
-    <br/>
-}
+<div style="border:1px solid black; border-radius: 15px; padding: 20px">
+    @foreach(var question in Model.Questions)
+    {
+        <div class="card p-3 text-right col-md-12">
+            <blockquote class="blockquote mb-0">
+                <p>@question.TextAnswer</p>
+                <footer class="blockquote-footer">
+                    <small class="text-muted">
+                        @question.TextQuestion
+                    </small>
+                    <br/>
+                    <small>@question.TimeAnswer</small>
+                </footer>
+            </blockquote>
+        </div>
+        <br/>
+    }
+</div>
+
