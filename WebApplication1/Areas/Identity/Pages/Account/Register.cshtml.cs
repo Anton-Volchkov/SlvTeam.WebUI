@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using SlvTeam.Domain.Entities;
+using WebApplication1.Data;
 
 namespace WebApplication1.Areas.Identity.Pages.Account
 {
@@ -27,17 +28,19 @@ namespace WebApplication1.Areas.Identity.Pages.Account
         private readonly UserManager<SlvTeamUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IWebHostEnvironment _appEnvironment;
+        private readonly ApplicationDbContext _db;
 
 
         public RegisterModel(
             UserManager<SlvTeamUser> userManager,
             SignInManager<SlvTeamUser> signInManager,
-            ILogger<RegisterModel> logger, IWebHostEnvironment appEnvironment)
+            ILogger<RegisterModel> logger, IWebHostEnvironment appEnvironment, ApplicationDbContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _appEnvironment = appEnvironment;
+            _db = db;
         }
 
         [BindProperty]
@@ -107,12 +110,8 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                string FileName = "";
-                if(Input.ImagePath is null)
-                {
-                    FileName = "NoPhoto";
-                }
-                else
+              
+                if(!(Input.ImagePath is null))
                 {
                     var path = "/UserImages/" + Input.ImagePath.FileName;
                     using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
@@ -120,19 +119,36 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                         await Input.ImagePath.CopyToAsync(fileStream);
                     }
 
-                    FileName = Input.ImagePath.FileName;
-
                 }
-
+              
                 var user = new SlvTeamUser(Input.Login, Input.FirstName, Input.LastName, Input.Phone, Input.Email,
-                                        Input.Adress,FileName,Input.AboutAs);
+                                        Input.Adress,Input.AboutAs);
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("Пользователь успешно создан.");
 
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+
+                    if (!(Input.ImagePath is null))
+                    {
+                        var path = "/UserImages/" + Input.ImagePath.FileName;
+                        using (var binaryReader = new BinaryReader(Input.ImagePath.OpenReadStream()))
+                        {
+
+                            byte[] imageData = binaryReader.ReadBytes((int)Input.ImagePath.Length);
+
+                            user.Image = imageData;
+
+                            await _userManager.UpdateAsync(user);
+
+                          
+                        }
+
+                    }
+
+                    return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)
                 {

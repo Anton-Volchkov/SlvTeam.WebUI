@@ -14,7 +14,7 @@ namespace SlvTeam.Domain.Entities
 
         public string RegisterDate { get; set; }
 
-        public string ImagePath { get; set; }
+        public byte[] Image { get; set; } = new byte[0];
 
         public string AboutAs { get; set; }
 
@@ -29,7 +29,7 @@ namespace SlvTeam.Domain.Entities
 
       
         public SlvTeamUser(string login, string firstName, string lastName, string phone, string email,
-                        string address, string imagePath, string aboutAs) : this()
+                        string address, string aboutAs) : this()
         {
             SetUserName(login);
             SetFirstName(firstName);
@@ -37,7 +37,6 @@ namespace SlvTeam.Domain.Entities
             SetPhone(phone);
             SetEmail(email);
             SetAddress(address);
-            SetUserImagePath(imagePath);
             AboutAs = aboutAs;
 
             //TODO: reg time
@@ -53,15 +52,6 @@ namespace SlvTeam.Domain.Entities
             AboutAs = info;
         }
 
-        public void SetUserImagePath(string path)
-        {
-            if (string.IsNullOrWhiteSpace(path))
-            {
-                throw new ArgumentException("Image Path is empty", nameof(path));
-            }
-
-            ImagePath = path;
-        }
 
         public void SetUserName(string login)
         {

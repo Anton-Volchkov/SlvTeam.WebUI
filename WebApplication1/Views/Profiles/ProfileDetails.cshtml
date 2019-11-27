@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-4">
         <div class="polaroid">
-            <img src="~/UserImages/@Model.User.ImagePath" alt="@Model.User.ImagePath" class="img-fluid" />
+            <img  style='height: 300px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.User.Image))" />
         </div>
     </div>
   

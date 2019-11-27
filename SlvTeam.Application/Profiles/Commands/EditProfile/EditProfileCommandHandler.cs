@@ -25,7 +25,7 @@ namespace SlvTeam.Application.Profiles.Commands.EditProfile
         {
             var User = await _manager.FindByIdAsync(request.Model.Id);
 
-            if(request.Model.ImagePath != default(IFormFile) && User.ImagePath != request.Model.ImagePath.FileName)
+            if(request.Model.ImagePath != default(IFormFile))
             {
                 var path = "/UserImages/" + request.Model.ImagePath.FileName;
                 using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
@@ -33,7 +33,14 @@ namespace SlvTeam.Application.Profiles.Commands.EditProfile
                     await request.Model.ImagePath.CopyToAsync(fileStream);
                 }
 
-                User.ImagePath = request.Model.ImagePath.FileName;
+                using (var binaryReader = new BinaryReader(request.Model.ImagePath.OpenReadStream()))
+                {
+
+                    byte[] imageData = binaryReader.ReadBytes((int)request.Model.ImagePath.Length);
+
+                    User.Image = imageData;
+
+                }
             }
            
             User.SetFirstName(request.Model.FirstName);
