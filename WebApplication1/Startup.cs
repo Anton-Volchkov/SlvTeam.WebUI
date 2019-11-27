@@ -14,6 +14,7 @@ using SlvTeam.Application.Users.Commands.AddLocation;
 using SlvTeam.Domain.Entities;
 using WebApplication1.Data;
 using WebApplication1.Helpers;
+using WebApplication1.HostedServices;
 
 namespace WebApplication1
 {
@@ -50,6 +51,8 @@ namespace WebApplication1
             services.AddMediatR(typeof(AddLocationCommand).GetTypeInfo().Assembly);
 
             services.AddControllersWithViews();
+
+            services.AddHostedService<MigrationHostedService>();
 
             services.AddRazorPages();
         }
