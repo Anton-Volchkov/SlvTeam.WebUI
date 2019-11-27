@@ -10,7 +10,10 @@
         <br/>
         <br/>
 
-        <a class="btn btn-info col-md-12" asp-controller="Profiles" asp-action="EditProfile">Редактировать профиль</a>
+        <a class="btn btn-info col-md-12" asp-controller="Profiles" asp-action="EditProfile">
+            <i class="fas fa-user-edit"></i>
+            Редактировать профиль
+        </a>
 
     </div>
 
@@ -45,7 +48,10 @@
                         @Model.User.Location
                         <br/>
                         <br/>
-                        <button class="btn btn-success" onclick="AddCoords()"> Обновить локацию</button>
+                        <button class="btn btn-success" onclick="AddCoords()">
+                            <i class="fas fa-map-marked-alt"></i>
+                            Обновить локацию
+                        </button>
                     </td>
                 }
             </tr>
@@ -56,8 +62,9 @@
 </div>
 <h4 class="text-center">
     Ответы на вопросы
+    <i class="fas fa-comments"></i>
     <br />
-    @if(Model.Questions.Length == 0)
+    @if (Model.Questions.Length == 0)
     {
         <div class="text-center">
             <h4 class="text-info col-md-12">Этот пользователь ещё не отвечал на вопросы...</h4>
@@ -79,6 +86,7 @@
                 <small>@question.TimeAnswer</small>
             </footer>
             <form method="post" asp-controller="Questions" asp-action="DeleteQuestion" asp-route-returnUrl="@Url.Action("Profile", "Profiles")" asp-route-questionID="@question.Id">
+                <br />
                 <button type="submit" class="btn btn-danger">Удалить</button>
             </form>
         </blockquote>

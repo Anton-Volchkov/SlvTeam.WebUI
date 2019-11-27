@@ -1,4 +1,12 @@
-﻿function AddCoords() {
+﻿$(document).ready(function () {
+    $("#showFormWithQuestion").click(function () {
+        $("#FormWithQuestion").slideDown("slow");
+    });
+});
+
+
+
+function AddCoords() {
     navigator.geolocation.getCurrentPosition(
         function (position) {
             $.ajax({

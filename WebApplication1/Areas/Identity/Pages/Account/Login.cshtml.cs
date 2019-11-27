@@ -52,7 +52,7 @@ namespace WebApplication1.Areas.Identity.Pages.Account
             [Display(Name = "Пароль")]
             public string Password { get; set; }
 
-            [Display(Name = "Запомнить на этом компьютере?")]
+            [Display(Name = "Запомнить меня?")]
             public bool RememberMe { get; set; }
         }
 

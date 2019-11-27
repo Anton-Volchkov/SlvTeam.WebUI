@@ -65,7 +65,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ProfileDetail(string userID)
+        public async Task<IActionResult> ProfileDetails(string userID)
         {
             if (_signInManager.IsSignedIn(User))
             {
@@ -86,7 +86,7 @@ namespace WebApplication1.Controllers
                 User = user
             };
 
-            return View("ProfileDetail", model);
+            return View("ProfileDetails", model);
         }
 
         [Authorize]

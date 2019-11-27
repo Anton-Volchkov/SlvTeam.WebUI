@@ -41,26 +41,37 @@
 
         </table>
     </div>
-
-    <div class="jumbotron  mb-6">
-        <h1 class="display-4">Задайте анонимный вопрос этому пользователю!</h1>
-        <hr class="my-4">
-        <form asp-antiforgery="true" asp-action="CreateQuestion" asp-controller="Questions">
-            <div class="form-group">
-                <br/>
-                <textarea required="" placeholder="Ваш вопрос" class="form-control" name="textQuestion" rows="3"></textarea>
-                <input type="hidden" name="userID" value="@Model.User.Id"/>
-            </div>
-            <button type="submit" class="btn btn-primary">Отправить</button>
-        </form>
-    </div>
     <br/>
     <br />
 </div>
+
+<div class="text-center">
+    <div class="btn btn-info text-center" id="showFormWithQuestion">Задать пользователю анонимный вопрос</div>
+    <br />
+</div>
+
+<br />
+
+<div style="display: none" id="FormWithQuestion" class="jumbotron  mb-6">
+    <h1 class="display-4">Задайте анонимный вопрос этому пользователю!</h1>
+    <hr class="my-4">
+    <form asp-antiforgery="true" asp-action="CreateQuestion" asp-controller="Questions">
+        <div class="form-group">
+            <br/>
+            <textarea required="" placeholder="Ваш вопрос" class="form-control" name="textQuestion" rows="3"></textarea>
+            <input type="hidden" name="userID" value="@Model.User.Id"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+
+<br />
+
 <h4 class="text-center">
     Ответы на вопросы
+    <i class="fas fa-comments"></i>
     <br />
-    @if(Model.Questions.Length == 0)
+    @if (Model.Questions.Length == 0)
     {
         <div class="text-center">
             <h4 class="text-info col-md-12">Этот пользователь ещё не отвечал на вопросы...</h4>
