@@ -1,0 +1,33 @@
+﻿@model SlvTeam.Domain.Entities.SlvTeamUser[]
+
+@{
+    ViewData["Title"] = "Slv-Team";
+}
+
+<div class="row">
+
+    <div class="row col-md-12">
+        @{
+            foreach (var user in Model)
+            {
+                <div class="card col-md-4 text-center m-2">
+                    <img style='height: 210px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(user.Image))" />
+                    <div class="card-body">
+                        <h5 class="card-title">@user.FirstName @user.LastName</h5>
+                        <h2>@user.AboutAs</h2>
+
+                    </div>
+                    <div class="card-footer">
+
+                        <a class="btn btn-info btn-block" asp-area="" asp-controller="Profiles" asp-action="ProfileDetails" asp-route-userID="@user.Id">
+                            <i class="fas fa-address-card"></i>
+                            Просмотреть профиль
+                        </a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+
+</div>
