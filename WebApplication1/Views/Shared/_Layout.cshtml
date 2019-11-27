@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - WebApplication1</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css"/>
+    <script src="https://kit.fontawesome.com/e350016dbe.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <header>
@@ -20,13 +21,16 @@
                 <partial name="_LoginPartial"/>
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                            <i class="fas fa-home"></i>
+                            Главная
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Приватность</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Profiles" asp-action="SlvTeam">Участники SLV-TEAM</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Profiles" asp-action="SlvTeam">
+                            <i class="fas fa-users"></i>
+                            Участники SLV-TEAM
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -41,7 +45,7 @@
 
 <footer class="border-top footer text-muted">
     <div class="container">
-        &copy; 2019 - SlvTeam - <a asp-area="" asp-controller="Home" asp-action="Privacy">Приватность</a>
+        &copy; 2019 - SlvTeam
     </div>
 </footer>
 
