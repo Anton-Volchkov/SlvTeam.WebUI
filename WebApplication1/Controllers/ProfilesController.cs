@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -78,7 +79,7 @@ namespace WebApplication1.Controllers
 
             var model = new UserProfileModel
             {
-                Questions = questions.Result,
+                Questions = questions.Result.Reverse().ToArray(),
                 User = user
             };
 
@@ -107,7 +108,7 @@ namespace WebApplication1.Controllers
 
             var model = new UserProfileModel
             {
-                Questions = questions.Result,
+                Questions = questions.Result.Reverse().ToArray(),
                 User = user
             };
             return View(model);
