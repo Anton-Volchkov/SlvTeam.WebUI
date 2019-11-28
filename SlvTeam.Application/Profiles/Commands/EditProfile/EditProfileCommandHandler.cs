@@ -9,7 +9,7 @@ using SlvTeam.Domain.Entities;
 
 namespace SlvTeam.Application.Profiles.Commands.EditProfile
 {
-    internal class EditProfileCommandHandler : IRequestHandler<EditProfileCommand, SlvTeamUser>
+    public class EditProfileCommandHandler : IRequestHandler<EditProfileCommand, SlvTeamUser>
     {
         private readonly UserManager<SlvTeamUser> _manager;
         private readonly IWebHostEnvironment _appEnvironment;
