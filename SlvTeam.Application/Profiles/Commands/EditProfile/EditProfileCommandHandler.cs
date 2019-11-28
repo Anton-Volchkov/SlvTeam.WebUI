@@ -6,15 +6,16 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using SlvTeam.Domain.Entities;
+using IHostingEnvironment = Microsoft.Extensions.Hosting.IHostingEnvironment;
 
 namespace SlvTeam.Application.Profiles.Commands.EditProfile
 {
     public class EditProfileCommandHandler : IRequestHandler<EditProfileCommand, SlvTeamUser>
     {
         private readonly UserManager<SlvTeamUser> _manager;
-        private readonly IWebHostEnvironment _appEnvironment;
+        private readonly IHostingEnvironment _appEnvironment;
 
-        public EditProfileCommandHandler(UserManager<SlvTeamUser> manager, IWebHostEnvironment appEnvironment)
+        public EditProfileCommandHandler(UserManager<SlvTeamUser> manager, IHostingEnvironment appEnvironment)
         {
             _manager = manager;
             _appEnvironment = appEnvironment;
@@ -27,7 +28,7 @@ namespace SlvTeam.Application.Profiles.Commands.EditProfile
             if(request.Model.ImagePath != default(IFormFile))
             {
                 var path = "/UserImages/" + request.Model.ImagePath.FileName;
-                using(var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                using(var fileStream = new FileStream(_appEnvironment.ContentRootPath + path, FileMode.Create))
                 {
                     await request.Model.ImagePath.CopyToAsync(fileStream);
                 }
