@@ -12,7 +12,7 @@ namespace SlvTeam.Domain.Entities
         public string TimeNews { get; set; }
         public News()
         {
-            TimeNews = DateTime.UtcNow.ToString("G");
+            TimeNews = DateTime.Now.ToString("G");
         }
 
         public News(string textNews) : this()

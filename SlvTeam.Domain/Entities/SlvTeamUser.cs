@@ -24,7 +24,7 @@ namespace SlvTeam.Domain.Entities
 
         public SlvTeamUser()
         {
-            RegisterDate = DateTime.UtcNow.ToString("G");
+            RegisterDate = DateTime.Now.ToString("G");
         }
 
 

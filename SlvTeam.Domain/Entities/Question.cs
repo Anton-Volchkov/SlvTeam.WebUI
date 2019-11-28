@@ -12,7 +12,7 @@ namespace SlvTeam.Domain.Entities
 
         public Question()
         {
-            TimeAnswer = DateTime.UtcNow.ToString("G");
+            TimeAnswer = DateTime.Now.ToString("G");
         }
 
         public Question(string textQuestion, string UserID) : this()
