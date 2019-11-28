@@ -12,9 +12,9 @@ namespace SlvTeam.Application.Profiles.Commands.EditProfile
     internal class EditProfileCommandHandler : IRequestHandler<EditProfileCommand, SlvTeamUser>
     {
         private readonly UserManager<SlvTeamUser> _manager;
-        private readonly IHostingEnvironment _appEnvironment;
+        private readonly IWebHostEnvironment _appEnvironment;
 
-        public EditProfileCommandHandler(UserManager<SlvTeamUser> manager, IHostingEnvironment appEnvironment)
+        public EditProfileCommandHandler(UserManager<SlvTeamUser> manager, IWebHostEnvironment appEnvironment)
         {
             _manager = manager;
             _appEnvironment = appEnvironment;
