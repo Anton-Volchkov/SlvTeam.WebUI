@@ -11,7 +11,7 @@
             foreach(var user in Model)
             {
                 <div class="card col-md-4 text-center m-2">
-                    <img style='height: 210px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(user.Image))"/>
+                    @*<img style='height: 210px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(user.Image))"/>*@
                     <div class="card-body">
                         <h5 class="card-title">@user.FirstName @user.LastName</h5>
                         <h2>@user.AboutAs</h2>
