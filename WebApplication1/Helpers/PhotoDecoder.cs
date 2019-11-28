@@ -20,7 +20,6 @@ namespace SlvTeam.WebUI.Helpers
 
         public async Task Execute()
         {
-            var uusers = _db.Users.ToArray();
             var users = _db.Users.Where(x => x.ImageBytes != null).ToArray();
 
             foreach(var user in users)
