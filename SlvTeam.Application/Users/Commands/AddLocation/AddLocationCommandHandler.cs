@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using Flurl.Http;
@@ -37,7 +38,7 @@ namespace SlvTeam.Application.Users.Commands.AddLocation
             var textInfo = new CultureInfo("ru-RU").TextInfo;
             var capitaliedText = textInfo.ToTitleCase(textInfo.ToLower(Location.DisplayName));
 
-            request.User.Location = capitaliedText;
+            request.User.Location = DateTime.Now.ToString("G") +" находился по адресу: "+ capitaliedText;
             await _db.SaveChangesAsync();
 
             return true;
