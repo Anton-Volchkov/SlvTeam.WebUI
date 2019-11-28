@@ -27,8 +27,8 @@ namespace SlvTeam.Application.Profiles.Commands.EditProfile
 
             if(request.Model.ImagePath != default(IFormFile))
             {
-                var path = "/UserImages/" + request.Model.ImagePath.FileName;
-                using(var fileStream = new FileStream(_appEnvironment.ContentRootPath + path, FileMode.Create))
+                var path = "/wwwroot/UserImages/" + request.Model.ImagePath.FileName;
+                using(var fileStream = new FileStream(_appEnvironment.ContentRootPath + path, FileMode.OpenOrCreate))
                 {
                     await request.Model.ImagePath.CopyToAsync(fileStream);
                 }
