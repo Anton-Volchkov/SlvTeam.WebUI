@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Reflection;
 using Hangfire;
 using Hangfire.MemoryStorage;
@@ -20,9 +21,24 @@ namespace WebApplication1
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            var culture = new CultureInfo("ru-RU");
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+            var builder = new ConfigurationBuilder()
+                          .SetBasePath(env.ContentRootPath)
+                          .AddJsonFile("appsettings.json", false, true)
+                          .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
+                          .AddEnvironmentVariables();
+        
+            if (env.IsDevelopment())
+            {
+                builder.AddUserSecrets<Startup>();
+            }
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
