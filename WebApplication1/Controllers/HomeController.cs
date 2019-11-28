@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -19,7 +14,7 @@ namespace WebApplication1.Controllers
         private readonly UserManager<SlvTeamUser> _manager;
         private readonly IMediator _mediator;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<SlvTeamUser> manager,IMediator mediator)
+        public HomeController(ILogger<HomeController> logger, UserManager<SlvTeamUser> manager, IMediator mediator)
         {
             _logger = logger;
             _manager = manager;

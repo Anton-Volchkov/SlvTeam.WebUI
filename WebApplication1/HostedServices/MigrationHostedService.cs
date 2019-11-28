@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +16,7 @@ namespace WebApplication1.HostedServices
         {
             _serviceProvider = serviceProvider;
         }
+
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             await Migrate<ApplicationDbContext>(cancellationToken);

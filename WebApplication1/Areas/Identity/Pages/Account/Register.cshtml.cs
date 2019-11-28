@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using SlvTeam.Domain.Entities;
 using WebApplication1.Data;
@@ -108,52 +103,44 @@ namespace WebApplication1.Areas.Identity.Pages.Account
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
-              
                 if(!(Input.ImagePath is null))
                 {
                     var path = "/UserImages/" + Input.ImagePath.FileName;
-                    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                    using(var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
                     {
                         await Input.ImagePath.CopyToAsync(fileStream);
                     }
-
                 }
-              
+
                 var user = new SlvTeamUser(Input.Login, Input.FirstName, Input.LastName, Input.Phone, Input.Email,
-                                        Input.Adress,Input.AboutAs);
+                                           Input.Adress, Input.AboutAs);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
-                if (result.Succeeded)
+                if(result.Succeeded)
                 {
                     _logger.LogInformation("Пользователь успешно создан.");
 
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _signInManager.SignInAsync(user, false);
 
-                    if (!(Input.ImagePath is null))
+                    if(!(Input.ImagePath is null))
                     {
                         var path = "/UserImages/" + Input.ImagePath.FileName;
-                        using (var binaryReader = new BinaryReader(Input.ImagePath.OpenReadStream()))
+                        using(var binaryReader = new BinaryReader(Input.ImagePath.OpenReadStream()))
                         {
-
-                            byte[] imageData = binaryReader.ReadBytes((int)Input.ImagePath.Length);
+                            var imageData = binaryReader.ReadBytes((int) Input.ImagePath.Length);
 
                             user.Image = imageData;
 
                             await _userManager.UpdateAsync(user);
-
-                          
                         }
-
                     }
 
                     return LocalRedirect(returnUrl);
                 }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+
+                foreach(var error in result.Errors) ModelState.AddModelError(string.Empty, error.Description);
             }
 
             // If we got this far, something failed, redisplay form

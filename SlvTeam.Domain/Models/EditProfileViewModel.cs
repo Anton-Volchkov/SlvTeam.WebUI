@@ -6,6 +6,7 @@ namespace SlvTeam.Domain.Models
     public class EditProfileViewModel
     {
         public string Id { get; set; }
+
         [Required]
         [Display(Name = "Имя")]
         public string FirstName { get; set; }

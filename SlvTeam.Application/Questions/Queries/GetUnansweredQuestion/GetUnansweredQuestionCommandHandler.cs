@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -13,13 +10,16 @@ namespace SlvTeam.Application.Questions.Queries.GetUnansweredQuestion
     public class GetUnansweredQuestionCommandHandler : IRequestHandler<GetUnansweredQuestionCommand, Question[]>
     {
         private readonly ApplicationDbContext _db;
+
         public GetUnansweredQuestionCommandHandler(ApplicationDbContext db)
         {
             _db = db;
         }
-        public  Task<Question[]> Handle(GetUnansweredQuestionCommand request, CancellationToken cancellationToken)
+
+        public Task<Question[]> Handle(GetUnansweredQuestionCommand request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_db.Questions.Where(x => string.IsNullOrWhiteSpace(x.TextAnswer) && x.FromUserID == request.UserID).ToArray());
+            return Task.FromResult(_db.Questions.Where(x => string.IsNullOrWhiteSpace(x.TextAnswer) &&
+                                                            x.FromUserID == request.UserID).ToArray());
         }
     }
 }

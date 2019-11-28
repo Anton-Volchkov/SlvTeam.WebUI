@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{5423C137-61C3-4D27-B055-59ADE3C680AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SlvTeam.WebUI", "WebApplication1\SlvTeam.WebUI.csproj", "{5423C137-61C3-4D27-B055-59ADE3C680AA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SlvTeam.Application", "SlvTeam.Application\SlvTeam.Application.csproj", "{89E796A2-15E1-4033-A32F-8B5B2F30B229}"
 EndProject

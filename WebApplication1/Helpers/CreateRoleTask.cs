@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
 namespace WebApplication1.Helpers
@@ -9,7 +6,7 @@ namespace WebApplication1.Helpers
     public class CreateRolesTask
     {
         private readonly RoleManager<IdentityRole> _manager;
-      
+
 
         public CreateRolesTask(RoleManager<IdentityRole> manager)
         {
@@ -18,10 +15,9 @@ namespace WebApplication1.Helpers
 
         public async Task Execute()
         {
-          
             const string roleName = "Admin";
 
-            if (await _manager.RoleExistsAsync(roleName))
+            if(await _manager.RoleExistsAsync(roleName))
             {
                 return;
             }

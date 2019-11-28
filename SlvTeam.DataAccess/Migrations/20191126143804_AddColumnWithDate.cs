@@ -7,25 +7,25 @@ namespace SlvTeam.DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "TimeAnswer",
-                table: "Questions",
-                nullable: true);
+                                               "TimeAnswer",
+                                               "Questions",
+                                               nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "RegisterDate",
-                table: "AspNetUsers",
-                nullable: true);
+                                               "RegisterDate",
+                                               "AspNetUsers",
+                                               nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "TimeAnswer",
-                table: "Questions");
+                                        "TimeAnswer",
+                                        "Questions");
 
             migrationBuilder.DropColumn(
-                name: "RegisterDate",
-                table: "AspNetUsers");
+                                        "RegisterDate",
+                                        "AspNetUsers");
         }
     }
 }

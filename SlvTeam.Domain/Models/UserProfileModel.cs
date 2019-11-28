@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SlvTeam.Domain.Entities;
+﻿using SlvTeam.Domain.Entities;
 
 namespace SlvTeam.Domain.Models
 {

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MediatR;
+﻿using MediatR;
 using SlvTeam.Domain.Entities;
 
 namespace SlvTeam.Application.Profiles.Queries.GetSlvTeamProfiles
 {
-    public class GetSlvTeamProfilesCommand : IRequest<SlvTeamUser[]>
-    {
-    }
+    public class GetSlvTeamProfilesCommand : IRequest<SlvTeamUser[]> { }
 }

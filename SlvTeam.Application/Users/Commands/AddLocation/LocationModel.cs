@@ -1,11 +1,8 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SlvTeam.Application.Users.Commands.AddLocation
 {
-    public partial class LocationModel
+    public class LocationModel
     {
         [JsonProperty("place_id")]
         public long PlaceId { get; set; }
@@ -35,7 +32,7 @@ namespace SlvTeam.Application.Users.Commands.AddLocation
         public string[] Boundingbox { get; set; }
     }
 
-    public partial class Address
+    public class Address
     {
         [JsonProperty("department_store")]
         public string DepartmentStore { get; set; }
@@ -62,7 +59,7 @@ namespace SlvTeam.Application.Users.Commands.AddLocation
         public string State { get; set; }
 
         [JsonProperty("postcode")]
-       
+
         public string Postcode { get; set; }
 
         [JsonProperty("country")]

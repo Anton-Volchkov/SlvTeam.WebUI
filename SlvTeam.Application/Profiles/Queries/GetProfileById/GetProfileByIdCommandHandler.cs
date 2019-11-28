@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -13,10 +11,12 @@ namespace SlvTeam.Application.Profiles.Queries.GetProfileById
     public class GetProfileByIdCommandHandler : IRequestHandler<GetProfileByIdCommand, SlvTeamUser>
     {
         private readonly ApplicationDbContext _db;
+
         public GetProfileByIdCommandHandler(ApplicationDbContext db)
         {
             _db = db;
         }
+
         public async Task<SlvTeamUser> Handle(GetProfileByIdCommand request, CancellationToken cancellationToken)
         {
             var user = await _db.Users.FirstOrDefaultAsync(x => x.Id == request.UserID);

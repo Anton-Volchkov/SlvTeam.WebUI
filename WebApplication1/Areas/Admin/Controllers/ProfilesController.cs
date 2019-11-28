@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -28,11 +24,11 @@ namespace WebApplication1.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult AllUsers()
         {
-            var users =_mediator.Send(new GetAllProfilesCommnad()).Result;
+            var users = _mediator.Send(new GetAllProfilesCommnad()).Result;
             return View(users);
         }
 
-    
+
         public async Task<IActionResult> SetSlvTeamStatus(string userID)
         {
             var user = await _manager.FindByIdAsync(userID);
@@ -42,6 +38,5 @@ namespace WebApplication1.Areas.Admin.Controllers
 
             return RedirectToAction("AllUsers", "Profiles");
         }
-
     }
 }

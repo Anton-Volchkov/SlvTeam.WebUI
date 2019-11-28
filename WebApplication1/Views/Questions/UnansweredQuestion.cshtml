@@ -3,26 +3,26 @@
     ViewData["Title"] = "Неотвеченные вопросы";
 }
 
-@if (Model.Length > 0)
+@if(Model.Length > 0)
 {
-    @foreach (var question in Model)
-    {
-        <div class="form-group">
-            <form method="post">
-                <span>Вопрос: @question.TextQuestion</span>
+    @foreach(var question in Model)
+     {
+         <div class="form-group">
+             <form method="post">
+                 <span>Вопрос: @question.TextQuestion</span>
 
-                <div class="form-group">
-                    <textarea class="form-control" required name="textAnswer" placeholder="Введите ответ..." rows="3"></textarea>
-                </div>
-                <button type="submit" asp-controller="Questions" asp-action="SetAnswerOnQuestion" asp-route-questionID="@question.Id" class="btn btn-primary">Ответить</button>
+                 <div class="form-group">
+                     <textarea class="form-control" required name="textAnswer" placeholder="Введите ответ..." rows="3"></textarea>
+                 </div>
+                 <button type="submit" asp-controller="Questions" asp-action="SetAnswerOnQuestion" asp-route-questionID="@question.Id" class="btn btn-primary">Ответить</button>
 
-                <form method="post" asp-controller="Questions" asp-action="DeleteQuestion" asp-route-returnUrl="@Url.Action("UnansweredQuestion","Questions")" asp-route-questionID="@question.Id">
-                    <button type="submit" class="btn btn-danger">Удалить</button>
-                </form>
-            </form>
-            <br />
-        </div>
-    }
+                 <form method="post" asp-controller="Questions" asp-action="DeleteQuestion" asp-route-returnUrl="@Url.Action("UnansweredQuestion", "Questions")" asp-route-questionID="@question.Id">
+                     <button type="submit" class="btn btn-danger">Удалить</button>
+                 </form>
+             </form>
+             <br/>
+         </div>
+     }
 }
 else
 {

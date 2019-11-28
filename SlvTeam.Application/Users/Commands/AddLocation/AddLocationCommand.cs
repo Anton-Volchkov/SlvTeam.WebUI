@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MediatR;
+﻿using MediatR;
 using SlvTeam.Domain.Entities;
 
 namespace SlvTeam.Application.Users.Commands.AddLocation

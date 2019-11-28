@@ -86,8 +86,6 @@ namespace WebApplication1
 
             app.UseEndpoints(endpoints =>
             {
-               
-
                 endpoints.MapAreaControllerRoute(
                                                  "Admin",
                                                  "Admin",
@@ -101,7 +99,6 @@ namespace WebApplication1
             });
 
             CreateRole();
-
         }
 
         public void CreateRole()

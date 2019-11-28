@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SlvTeam.DataAccess.Migrations
 {
@@ -8,44 +7,41 @@ namespace SlvTeam.DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ProfileImages");
+                                       "ProfileImages");
 
             migrationBuilder.DropColumn(
-                name: "ImagePath",
-                table: "AspNetUsers");
+                                        "ImagePath",
+                                        "AspNetUsers");
 
             migrationBuilder.AddColumn<byte[]>(
-                name: "Image",
-                table: "AspNetUsers",
-                nullable: true);
+                                               "Image",
+                                               "AspNetUsers",
+                                               nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Image",
-                table: "AspNetUsers");
+                                        "Image",
+                                        "AspNetUsers");
 
             migrationBuilder.AddColumn<string>(
-                name: "ImagePath",
-                table: "AspNetUsers",
-                type: "nvarchar(max)",
-                nullable: true);
+                                               "ImagePath",
+                                               "AspNetUsers",
+                                               "nvarchar(max)",
+                                               nullable: true);
 
             migrationBuilder.CreateTable(
-                name: "ProfileImages",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Data = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    FromUserID = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImageName = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProfileImages", x => x.Id);
-                });
+                                         "ProfileImages",
+                                         table => new
+                                         {
+                                             Id = table.Column<int>("int")
+                                                       .Annotation("SqlServer:Identity", "1, 1"),
+                                             Data = table.Column<byte[]>("varbinary(max)", nullable: true),
+                                             FromUserID = table.Column<string>("nvarchar(max)", nullable: true),
+                                             ImageName = table.Column<string>("nvarchar(max)", nullable: true)
+                                         },
+                                         constraints: table => { table.PrimaryKey("PK_ProfileImages", x => x.Id); });
         }
     }
 }

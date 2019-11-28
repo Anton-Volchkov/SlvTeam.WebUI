@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.AspNetCore.Identity;
 
 namespace SlvTeam.Domain.Entities
@@ -18,18 +16,18 @@ namespace SlvTeam.Domain.Entities
 
         public string AboutAs { get; set; }
 
-        public string Location{ get; set; }
+        public string Location { get; set; }
 
         public bool IsSlvTeam { get; set; }
-        
+
         public SlvTeamUser()
         {
             RegisterDate = DateTime.UtcNow.ToString("G");
         }
 
-      
+
         public SlvTeamUser(string login, string firstName, string lastName, string phone, string email,
-                        string address, string aboutAs) : this()
+                           string address, string aboutAs) : this()
         {
             SetUserName(login);
             SetFirstName(firstName);
@@ -44,7 +42,7 @@ namespace SlvTeam.Domain.Entities
 
         public void SetAboutAs(string info)
         {
-            if (string.IsNullOrWhiteSpace(info))
+            if(string.IsNullOrWhiteSpace(info))
             {
                 throw new ArgumentException("Inbfo about as is empty", nameof(info));
             }
@@ -55,7 +53,7 @@ namespace SlvTeam.Domain.Entities
 
         public void SetUserName(string login)
         {
-            if (string.IsNullOrWhiteSpace(login))
+            if(string.IsNullOrWhiteSpace(login))
             {
                 throw new ArgumentException("login is empty", nameof(login));
             }
@@ -65,7 +63,7 @@ namespace SlvTeam.Domain.Entities
 
         public void SetFirstName(string firstName)
         {
-            if (string.IsNullOrWhiteSpace(firstName))
+            if(string.IsNullOrWhiteSpace(firstName))
             {
                 throw new ArgumentException("firstName is empty", nameof(firstName));
             }
@@ -75,7 +73,7 @@ namespace SlvTeam.Domain.Entities
 
         public void SetLastName(string lastName)
         {
-            if (string.IsNullOrWhiteSpace(lastName))
+            if(string.IsNullOrWhiteSpace(lastName))
             {
                 throw new ArgumentException("lastName is empty", nameof(lastName));
             }
@@ -85,7 +83,7 @@ namespace SlvTeam.Domain.Entities
 
         public void SetPhone(string phone) //TODO: валидация на номер
         {
-            if (string.IsNullOrWhiteSpace(phone))
+            if(string.IsNullOrWhiteSpace(phone))
             {
                 throw new ArgumentException("phone is empty", nameof(phone));
             }
@@ -95,7 +93,7 @@ namespace SlvTeam.Domain.Entities
 
         public void SetEmail(string email) //TODO: валидация на почту
         {
-            if (string.IsNullOrWhiteSpace(email))
+            if(string.IsNullOrWhiteSpace(email))
             {
                 throw new ArgumentException("phone is empty", nameof(email));
             }
@@ -105,7 +103,7 @@ namespace SlvTeam.Domain.Entities
 
         public void SetAddress(string address)
         {
-            if (string.IsNullOrWhiteSpace(address))
+            if(string.IsNullOrWhiteSpace(address))
             {
                 throw new ArgumentException("address is empty", nameof(address));
             }

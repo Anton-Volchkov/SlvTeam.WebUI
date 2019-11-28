@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -18,9 +15,11 @@ namespace SlvTeam.Application.Questions.Queries.GetAnsweredQuestion
         {
             _db = db;
         }
+
         public Task<Question[]> Handle(GetAnsweredQuestionCommand request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_db.Questions.Where(x => x.FromUserID == request.UserID && !string.IsNullOrWhiteSpace(x.TextAnswer)).ToArray());
+            return Task.FromResult(_db.Questions.Where(x => x.FromUserID == request.UserID &&
+                                                            !string.IsNullOrWhiteSpace(x.TextAnswer)).ToArray());
         }
     }
 }

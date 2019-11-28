@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +14,7 @@ namespace WebApplication1.Controllers
     {
         private readonly IMediator _mediator;
         private readonly UserManager<SlvTeamUser> _manager;
+
         public QuestionsController(IMediator mediator, UserManager<SlvTeamUser> manager)
         {
             _mediator = mediator;
@@ -26,11 +24,10 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateQuestion(string textQuestion, string userID)
         {
-            var result = await _mediator.Send(new AddQuestionCommand()
+            var result = await _mediator.Send(new AddQuestionCommand
             {
                 Question = textQuestion,
                 UserID = userID
-
             });
 
             return RedirectToAction("Success", "Home");
@@ -39,7 +36,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteQuestion(int questionID, string returnUrl = "")
         {
-            await _mediator.Send(new DeleteQuestionByIdCommand(){QuestionID = questionID});
+            await _mediator.Send(new DeleteQuestionByIdCommand { QuestionID = questionID });
 
             return LocalRedirect(returnUrl);
         }
@@ -47,7 +44,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<IActionResult> SetAnswerOnQuestion(string textAnswer, int questionID)
         {
-            await _mediator.Send(new AddAnswerOnQuestionCommand()
+            await _mediator.Send(new AddAnswerOnQuestionCommand
             {
                 Answer = textAnswer,
                 IdQuestion = questionID
@@ -60,7 +57,7 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> UnansweredQuestion()
         {
             var user = await _manager.GetUserAsync(User);
-            var model = _mediator.Send(new GetUnansweredQuestionCommand() { UserID = user.Id });
+            var model = _mediator.Send(new GetUnansweredQuestionCommand { UserID = user.Id });
 
             return View(model.Result);
         }
