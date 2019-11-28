@@ -1,5 +1,43 @@
-﻿@{
+﻿@model SlvTeam.Domain.Models.HomeIndexViewModel
+@{
     ViewData["Title"] = "Главная страница";
 }
 
-<h5>Тут нужно сделать красивый слайдер.</h5>
+@if(Model.News.Length > 0)
+{
+    <div class="text-center">
+        <h5>Новсоти SlvTeam</h5>
+    </div>
+
+    <ul class="list-unstyled">
+        @foreach(var news in Model.News)
+        {
+            <div style="border: 1px solid black; border-radius: 15px; padding: 20px">
+
+                <li class="media">
+                    <img src="Images/SlvTeam.jpg" class="mr-3" alt="...">
+                    <div class="media-body">
+                        @news.TextNews
+                    </div>
+                    <small>@news.TimeNews</small>
+                </li>
+                @if(Model.IsSlvTeam)
+                {
+                    <br/>
+                    <div class ="text-right">
+                        <form method="post" asp-controller="SlvTeamNews" asp-action="DeleteNews" asp-route-newsID="@news.Id">
+                            <button type="submit" class="btn btn-danger">Удалить</button>
+                        </form>
+                    </div>
+                }
+            </div>
+            <br />
+        }
+    </ul>
+}
+else
+{
+    <div class="text-center">
+        <h5>Новых новостей пока нет.</h5>
+    </div>
+}

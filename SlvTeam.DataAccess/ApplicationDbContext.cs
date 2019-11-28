@@ -8,6 +8,7 @@ namespace WebApplication1.Data
     public class ApplicationDbContext : IdentityDbContext<SlvTeamUser, IdentityRole, string>
     {
         public DbSet<Question> Questions { get; set; }
+        public DbSet<News> News { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) { }

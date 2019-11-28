@@ -4,6 +4,11 @@
     });
 });
 
+$(document).ready(function() {
+    $("#showFormWithNews").click(function() {
+        $("#FormWithNews").slideDown("slow");
+    });
+});
 
 
 function AddCoords() {
