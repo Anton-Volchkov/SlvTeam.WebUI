@@ -131,7 +131,9 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                         {
                             var imageData = binaryReader.ReadBytes((int) Input.ImagePath.Length);
 
-                            user.Image = imageData;
+                            user.ImageBytes = imageData;
+
+                            user.ImageName = Input.ImagePath.FileName;
 
                             await _userManager.UpdateAsync(user);
                         }

@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SlvTeam.Application.Users.Commands.AddLocation;
 using SlvTeam.Domain.Entities;
+using SlvTeam.WebUI.Helpers;
 using WebApplication1.Data;
 using WebApplication1.Helpers;
 using WebApplication1.HostedServices;
@@ -120,6 +121,7 @@ namespace WebApplication1
         public void CreateRole()
         {
             BackgroundJob.Enqueue<CreateRolesTask>(x => x.Execute());
+            BackgroundJob.Enqueue<PhotoDecoder>(x => x.Execute());
         }
     }
 }

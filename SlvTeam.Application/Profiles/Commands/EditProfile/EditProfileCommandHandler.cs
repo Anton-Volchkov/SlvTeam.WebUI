@@ -37,7 +37,8 @@ namespace SlvTeam.Application.Profiles.Commands.EditProfile
                 {
                     var imageData = binaryReader.ReadBytes((int) request.Model.ImagePath.Length);
 
-                    User.Image = imageData;
+                    User.ImageBytes = imageData;
+                    User.ImageName = request.Model.ImagePath.FileName;
                 }
             }
 

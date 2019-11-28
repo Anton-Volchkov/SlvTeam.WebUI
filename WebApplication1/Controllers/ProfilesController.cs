@@ -37,6 +37,7 @@ namespace WebApplication1.Controllers
         public IActionResult SlvTeam()
         {
             var slvTeamUsers = _mediator.Send(new GetSlvTeamProfilesCommand()).Result;
+          
             return View("SlvTeamProfiles", slvTeamUsers);
         }
 

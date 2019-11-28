@@ -12,7 +12,9 @@ namespace SlvTeam.Domain.Entities
 
         public string RegisterDate { get; set; }
 
-        public byte[] Image { get; set; } = new byte[0];
+        public byte[] ImageBytes { get; set; } = new byte[0];
+
+        public string ImageName { get; set; } = "NoPhoto.png";
 
         public string AboutAs { get; set; }
 
@@ -27,7 +29,7 @@ namespace SlvTeam.Domain.Entities
 
 
         public SlvTeamUser(string login, string firstName, string lastName, string phone, string email,
-                           string address, string aboutAs) : this()
+                           string address, string aboutAs, string photoName = "NoPhoto.png") : this()
         {
             SetUserName(login);
             SetFirstName(firstName);
@@ -36,6 +38,7 @@ namespace SlvTeam.Domain.Entities
             SetEmail(email);
             SetAddress(address);
             AboutAs = aboutAs;
+            ImageName = photoName;
 
             //TODO: reg time
         }
