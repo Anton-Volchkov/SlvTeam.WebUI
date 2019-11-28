@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -39,7 +40,7 @@ namespace WebApplication1.Controllers
             var news = _mediator.Send(new GetAllNewsCommand());
             return View(new HomeIndexViewModel()
             {
-                News = news.Result,
+                News = news.Result.Reverse().ToArray(),
                 IsSlvTeam = userIsSlvTeam
 
             });
