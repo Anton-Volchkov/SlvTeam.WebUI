@@ -49,7 +49,7 @@ namespace WebApplication1
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                                                            options.UseSqlServer(connectionString));
+                                                            options.UseNpgsql(connectionString));
             services.AddIdentity<SlvTeamUser, IdentityRole>(options =>
                     {
                         options.User.RequireUniqueEmail = true;
