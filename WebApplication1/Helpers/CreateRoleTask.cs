@@ -21,16 +21,14 @@ namespace WebApplication1.Helpers
 
             var user = await _userManager.FindByNameAsync("Kerli");
 
-            if (!await _manager.RoleExistsAsync(roleName))
+            if(!await _manager.RoleExistsAsync(roleName))
             {
-
                 var role = new IdentityRole(roleName);
                 await _manager.CreateAsync(role);
             }
 
 
             await _userManager.AddToRoleAsync(user, "Admin");
-
         }
     }
 }

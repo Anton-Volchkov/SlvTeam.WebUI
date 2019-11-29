@@ -33,8 +33,8 @@ namespace WebApplication1
                           .AddJsonFile("appsettings.json", false, true)
                           .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
                           .AddEnvironmentVariables();
-        
-            if (env.IsDevelopment())
+
+            if(env.IsDevelopment())
             {
                 builder.AddUserSecrets<Startup>();
             }

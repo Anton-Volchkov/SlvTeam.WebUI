@@ -38,7 +38,7 @@ namespace SlvTeam.Application.Users.Commands.AddLocation
             var textInfo = CultureInfo.DefaultThreadCurrentCulture.TextInfo;
             var capitaliedText = textInfo.ToTitleCase(textInfo.ToLower(Location.DisplayName));
 
-            request.User.Location = DateTime.Now.ToString("G") +" находился по адресу: "+ capitaliedText;
+            request.User.Location = DateTime.Now.ToString("G") + " находился по адресу: " + capitaliedText;
             await _db.SaveChangesAsync();
 
             return true;

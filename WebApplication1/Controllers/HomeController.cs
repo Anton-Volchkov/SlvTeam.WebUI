@@ -19,7 +19,8 @@ namespace WebApplication1.Controllers
         private readonly IMediator _mediator;
         private readonly SignInManager<SlvTeamUser> _signInManager;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<SlvTeamUser> manager, IMediator mediator, SignInManager<SlvTeamUser> signInManager)
+        public HomeController(ILogger<HomeController> logger, UserManager<SlvTeamUser> manager, IMediator mediator,
+                              SignInManager<SlvTeamUser> signInManager)
         {
             _logger = logger;
             _manager = manager;
@@ -29,20 +30,19 @@ namespace WebApplication1.Controllers
 
         public async Task<IActionResult> Index()
         {
-            bool userIsSlvTeam = false;
+            var userIsSlvTeam = false;
             if(_signInManager.IsSignedIn(User))
             {
                 var user = await _manager.GetUserAsync(User);
 
                 userIsSlvTeam = user.IsSlvTeam;
             }
-            
+
             var news = _mediator.Send(new GetAllNewsCommand());
-            return View(new HomeIndexViewModel()
+            return View(new HomeIndexViewModel
             {
                 News = news.Result.Reverse().ToArray(),
                 IsSlvTeam = userIsSlvTeam
-
             });
         }
 

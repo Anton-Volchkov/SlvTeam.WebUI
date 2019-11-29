@@ -38,7 +38,7 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> SlvTeam()
         {
             var slvTeamUsers = await _mediator.Send(new GetSlvTeamProfilesCommand());
-          
+
             return View("SlvTeamProfiles", slvTeamUsers);
         }
 

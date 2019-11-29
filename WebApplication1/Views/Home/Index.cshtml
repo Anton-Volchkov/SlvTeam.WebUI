@@ -24,14 +24,14 @@
                 @if(Model.IsSlvTeam)
                 {
                     <br/>
-                    <div class ="text-right">
+                    <div class="text-right">
                         <form method="post" asp-controller="SlvTeamNews" asp-action="DeleteNews" asp-route-newsID="@news.Id">
                             <button type="submit" class="btn btn-danger">Удалить</button>
                         </form>
                     </div>
                 }
             </div>
-            <br />
+            <br/>
         }
     </ul>
 }

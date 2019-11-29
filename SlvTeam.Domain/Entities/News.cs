@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SlvTeam.Domain.Entities
 {
@@ -10,6 +8,7 @@ namespace SlvTeam.Domain.Entities
         public string TextNews { get; set; }
 
         public string TimeNews { get; set; }
+
         public News()
         {
             TimeNews = DateTime.Now.ToString("G");

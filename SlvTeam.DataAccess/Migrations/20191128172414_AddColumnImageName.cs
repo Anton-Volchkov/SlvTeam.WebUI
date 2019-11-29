@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SlvTeam.DataAccess.Migrations
 {
@@ -8,35 +7,35 @@ namespace SlvTeam.DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Image",
-                table: "AspNetUsers");
+                                        "Image",
+                                        "AspNetUsers");
 
             migrationBuilder.AddColumn<byte[]>(
-                name: "ImageBytes",
-                table: "AspNetUsers",
-                nullable: true);
+                                               "ImageBytes",
+                                               "AspNetUsers",
+                                               nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "ImageName",
-                table: "AspNetUsers",
-                nullable: true);
+                                               "ImageName",
+                                               "AspNetUsers",
+                                               nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "ImageBytes",
-                table: "AspNetUsers");
+                                        "ImageBytes",
+                                        "AspNetUsers");
 
             migrationBuilder.DropColumn(
-                name: "ImageName",
-                table: "AspNetUsers");
+                                        "ImageName",
+                                        "AspNetUsers");
 
             migrationBuilder.AddColumn<byte[]>(
-                name: "Image",
-                table: "AspNetUsers",
-                type: "bytea",
-                nullable: true);
+                                               "Image",
+                                               "AspNetUsers",
+                                               "bytea",
+                                               nullable: true);
         }
     }
 }

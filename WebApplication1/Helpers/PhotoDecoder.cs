@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +10,7 @@ namespace SlvTeam.WebUI.Helpers
     {
         private readonly ApplicationDbContext _db;
         private readonly IWebHostEnvironment _appEnvironment;
+
         public PhotoDecoder(ApplicationDbContext db, IWebHostEnvironment appEnvironment)
         {
             _db = db;
@@ -23,13 +22,11 @@ namespace SlvTeam.WebUI.Helpers
             var users = _db.Users.Where(x => x.ImageBytes != null).ToArray();
 
             foreach(var user in users)
-            {
-                using (FileStream fs = new System.IO.FileStream(_appEnvironment.WebRootPath+"/UserImages/"+user.ImageName, FileMode.OpenOrCreate))
+                using(var fs = new FileStream(_appEnvironment.WebRootPath + "/UserImages/" + user.ImageName,
+                                              FileMode.OpenOrCreate))
                 {
                     fs.Write(user.ImageBytes, 0, user.ImageBytes.Length);
                 }
-            }
-
         }
     }
 }
