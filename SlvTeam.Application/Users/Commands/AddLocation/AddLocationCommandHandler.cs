@@ -24,8 +24,8 @@ namespace SlvTeam.Application.Users.Commands.AddLocation
 
         public async Task<bool> Handle(AddLocationCommand request, CancellationToken cancellationToken)
         {
-            var response = await EndPoint.AllowAnyHttpStatus().SetQueryParam("lat", $"{request.Lat}")
-                                         .SetQueryParam("lon", $"{request.Lon}").WithHeader("User-Agent", UserAgent)
+            var response = await EndPoint.AllowAnyHttpStatus().SetQueryParam("lat", request.Lat)
+                                         .SetQueryParam("lon", request.Lon).WithHeader("User-Agent", UserAgent)
                                          .GetAsync();
 
             if(!response.IsSuccessStatusCode)
@@ -35,7 +35,7 @@ namespace SlvTeam.Application.Users.Commands.AddLocation
 
             var Location = JsonConvert.DeserializeObject<LocationModel>(await response.Content.ReadAsStringAsync());
 
-            var textInfo = new CultureInfo("ru-RU").TextInfo;
+            var textInfo = CultureInfo.DefaultThreadCurrentCulture.TextInfo;
             var capitaliedText = textInfo.ToTitleCase(textInfo.ToLower(Location.DisplayName));
 
             request.User.Location = DateTime.Now.ToString("G") +" находился по адресу: "+ capitaliedText;

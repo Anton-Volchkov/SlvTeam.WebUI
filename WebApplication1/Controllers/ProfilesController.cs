@@ -35,9 +35,9 @@ namespace WebApplication1.Controllers
 
 
         [HttpGet]
-        public IActionResult SlvTeam()
+        public async Task<IActionResult> SlvTeam()
         {
-            var slvTeamUsers = _mediator.Send(new GetSlvTeamProfilesCommand()).Result;
+            var slvTeamUsers = await _mediator.Send(new GetSlvTeamProfilesCommand());
           
             return View("SlvTeamProfiles", slvTeamUsers);
         }
@@ -75,11 +75,11 @@ namespace WebApplication1.Controllers
             }
 
             var user = await _mediator.Send(new GetProfileByIdCommand { UserID = userID });
-            var questions = _mediator.Send(new GetAnsweredQuestionCommand { UserID = user.Id });
+            var questions = await _mediator.Send(new GetAnsweredQuestionCommand { UserID = user.Id });
 
             var model = new UserProfileModel
             {
-                Questions = questions.Result.Reverse().ToArray(),
+                Questions = questions.Reverse().ToArray(),
                 User = user
             };
 
@@ -104,11 +104,11 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> Profile()
         {
             var user = await _manager.GetUserAsync(User);
-            var questions = _mediator.Send(new GetAnsweredQuestionCommand { UserID = user.Id });
+            var questions = await _mediator.Send(new GetAnsweredQuestionCommand { UserID = user.Id });
 
             var model = new UserProfileModel
             {
-                Questions = questions.Result.Reverse().ToArray(),
+                Questions = questions.Reverse().ToArray(),
                 User = user
             };
             return View(model);

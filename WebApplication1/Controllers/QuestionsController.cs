@@ -57,9 +57,9 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> UnansweredQuestion()
         {
             var user = await _manager.GetUserAsync(User);
-            var model = _mediator.Send(new GetUnansweredQuestionCommand { UserID = user.Id });
+            var model = await _mediator.Send(new GetUnansweredQuestionCommand { UserID = user.Id });
 
-            return View(model.Result);
+            return View(model);
         }
     }
 }
