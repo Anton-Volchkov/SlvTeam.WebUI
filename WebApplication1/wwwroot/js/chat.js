@@ -32,7 +32,7 @@ connection.on("ReceiveMessage", function (user, message) {
         (currentdate.getMonth() + 1) + "/"
         + currentdate.getDate() + "/"
         + currentdate.getFullYear() + " "
-        + currentdate.toLocaleString('ru-RU', { hour: 'numeric', minute: 'numeric', hour12: true })
+        + currentdate.toLocaleString('ru-RU', { hour: 'numeric', minute: 'numeric', hour12: false })
 
     container.appendChild(sender);
     container.appendChild(text);
