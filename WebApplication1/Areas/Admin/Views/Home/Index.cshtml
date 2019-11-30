@@ -12,5 +12,11 @@
         <a class="btn btn-primary btn-lg" asp-area="Admin" asp-controller="Profiles" asp-action="AllUsers">
             Все пользователи
         </a>
+        <form method="post" asp-area="Admin" asp-controller="Message" asp-action="DeleteAllMessage">
+            <button type="submit" class="btn btn-danger btn-lg" >
+                Удалить все сообщения в чате
+            </button>
+        </form>
+       
     </p>
 </div>
