@@ -17,8 +17,17 @@ connection.on("ReceiveMessage", function (user, message) {
 
     var chat = document.getElementById("messagesList");
 
-    var  container = document.createElement('div');
-    container.classList.add("ChatContainer", "bg-light");
+    var currentuser = document.getElementById("userInput").value;
+
+    var container = document.createElement('div');
+   
+
+    if (user == currentuser ) {
+        container.classList.add("ChatContainerSender", "bg-light", "col-md-7" ,"offset-md-5");
+    } else {
+        container.classList.add("ChatContainerRecipient", "bg-light","col-md-7");
+    }
+   
 
     var  sender = document.createElement('p');
     sender.classList.add("ChatSender");
