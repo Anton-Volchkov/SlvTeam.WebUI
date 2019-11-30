@@ -22,9 +22,9 @@ connection.on("ReceiveMessage", function (user, message) {
    
 
     if (user == currentuser ) {
-        container.classList.add("ChatContainerSender", "bg-light", "col-md-7" ,"offset-md-5");
+        container.classList.add("ChatContainerSender", "bg-light", "col-7" ,"offset-5","text-right");
     } else {
-        container.classList.add("ChatContainerRecipient", "bg-light","col-md-7");
+        container.classList.add("ChatContainerRecipient", "bg-light","col-7");
     }
 
     var  sender = document.createElement('p');
@@ -41,10 +41,15 @@ connection.on("ReceiveMessage", function (user, message) {
         + currentdate.getFullYear() + " "
         + currentdate.toLocaleString('ru-RU', { hour: 'numeric', minute: 'numeric', hour12: false })
 
+    var EmptyDiv = document.createElement('div');
+
+    EmptyDiv.classList.add("EmptyDiv");
+
     container.appendChild(sender);
     container.appendChild(text);
     container.appendChild(when);
     chat.appendChild(container);
+    chat.appendChild(EmptyDiv);
 
 });
 
