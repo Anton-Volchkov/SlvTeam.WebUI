@@ -13,7 +13,6 @@ connection.on("ReceiveMessage", function (user, message) {
         return;
     }
 
-    document.getElementById("messageInput").value = "";
 
     var chat = document.getElementById("messagesList");
 
@@ -27,7 +26,6 @@ connection.on("ReceiveMessage", function (user, message) {
     } else {
         container.classList.add("ChatContainerRecipient", "bg-light","col-md-7");
     }
-   
 
     var  sender = document.createElement('p');
     sender.classList.add("ChatSender");
@@ -48,9 +46,6 @@ connection.on("ReceiveMessage", function (user, message) {
     container.appendChild(when);
     chat.appendChild(container);
 
- 
-    $('body, html').scrollTop($(document).height());
-     
 });
 
 connection.start().then(function () {
@@ -60,8 +55,13 @@ connection.start().then(function () {
 });
 
 document.getElementById("sendButton").addEventListener("click", function (event) {
+
     var user = document.getElementById("userInput").value;
     var message = document.getElementById("messageInput").value;
+
+    document.getElementById("messageInput").value = "";
+    $('body, html').scrollTop($(document).height());
+
     connection.invoke("SendMessage", user, message).catch(function (err) {
         return console.error(err.toString());
     });
