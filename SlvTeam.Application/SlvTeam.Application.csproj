@@ -19,7 +19,4 @@
     <ProjectReference Include="..\SlvTeam.Domain\SlvTeam.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>   
-  </ItemGroup>
-
 </Project>
