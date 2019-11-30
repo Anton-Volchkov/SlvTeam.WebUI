@@ -8,9 +8,13 @@ document.getElementById("sendButton").disabled = true;
 connection.on("ReceiveMessage", function (user, message) {
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     var encodedMsg = msg;
+
     if (msg.trim() =="") {
         return;
     }
+
+    document.getElementById("messageInput").value = "";
+
     var chat = document.getElementById("messagesList");
 
     var  container = document.createElement('div');
