@@ -1,0 +1,27 @@
+﻿@model SlvTeam.Domain.Entities.SlvTeamUser
+
+<div class="container">
+  
+    <div class="row">
+        <div id="messagesList" class="col-8">
+        </div>
+    
+        <div class="jumbotron  col-md-12">
+       
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Сообщение</label>
+                <input type="hidden" id="userInput" value="@Model.FirstName @Model.LastName"/>
+                <textarea  class="form-control"  id="messageInput" rows="3"></textarea>
+            </div>
+            <button id="sendButton" class="btn btn-primary">Отправить</button>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+}

@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using SlvTeam.Application.Users.Commands.AddLocation;
 using SlvTeam.Domain.Entities;
 using SlvTeam.WebUI.Helpers;
+using SlvTeam.WebUI.Hubs;
 using WebApplication1.Data;
 using WebApplication1.Helpers;
 using WebApplication1.HostedServices;
@@ -71,6 +72,8 @@ namespace WebApplication1
 
             services.AddHostedService<MigrationHostedService>();
 
+            services.AddSignalR();
+
             services.AddRazorPages();
         }
 
@@ -103,6 +106,8 @@ namespace WebApplication1
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<ChatHub>("/chatHub");
+
                 endpoints.MapAreaControllerRoute(
                                                  "Admin",
                                                  "Admin",

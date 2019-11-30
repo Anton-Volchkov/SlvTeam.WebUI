@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
 namespace SlvTeam.Domain.Entities
@@ -21,6 +22,8 @@ namespace SlvTeam.Domain.Entities
         public string Location { get; set; }
 
         public bool IsSlvTeam { get; set; }
+
+        public ICollection<Message> Messages { get; set; }
 
         public SlvTeamUser()
         {

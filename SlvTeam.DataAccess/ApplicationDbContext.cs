@@ -9,6 +9,7 @@ namespace WebApplication1.Data
     {
         public DbSet<Question> Questions { get; set; }
         public DbSet<News> News { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) { }

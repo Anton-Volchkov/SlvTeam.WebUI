@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -28,6 +29,16 @@ namespace WebApplication1.Controllers
             _signInManager = signInManager;
         }
 
+        [Authorize]
+        public async Task<IActionResult> Chat()
+        {
+            var user = await _manager.GetUserAsync(User);
+            if(!user.IsSlvTeam)
+            {
+                return View("Index");
+            }
+            return View(user);
+        }
         public async Task<IActionResult> Index()
         {
             var userIsSlvTeam = false;

@@ -23,6 +23,12 @@
         @if(Model.User.IsSlvTeam)
         {
             <br/>
+            <a class="btn btn-warning col-md-12" asp-action="Chat" asp-controller="Home">
+                <i class="fas fa-comment-dots"></i>
+              Чат Slv-Team
+            </a>
+
+            <br/>
             <button class="btn btn-success col-md-12" id="showFormWithNews">
                 <i class="fas fa-pencil-alt"></i>
                 Написать новость от лица Slv-Team
