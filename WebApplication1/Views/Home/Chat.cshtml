@@ -1,4 +1,4 @@
-﻿@model SlvTeam.Domain.Entities.SlvTeamUser
+﻿@model SlvTeam.Domain.Models.ChatViewModel
 
 @{
     ViewData["Title"] = "Чат";
@@ -6,6 +6,24 @@
 
 <div class="container">
     <div id="messagesList" class="row">
+        @foreach(var msg in Model.Messages)
+        {
+            string classes = msg.SlvTeamUserID == Model.User.Id? "ChatContainerSender bg-light col-5 offset-7 text-right" : "ChatContainerRecipient bg-light col-5";
+
+            <div id="msg @msg.Id" class="@classes">
+                <p class="ChatSender">
+                    @msg.UserName
+                </p>
+                <p>
+                    @msg.Text
+                </p>
+                <span>
+                    @msg.When
+                </span>
+            </div>
+
+            <div class="EmptyDiv"></div>
+        }
     </div>
 </div>
 
@@ -15,7 +33,8 @@
 
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Сообщение</label>
-        <input type="hidden" id="userInput" value="@Model.FirstName @Model.LastName"/>
+        <input type="hidden" id="userInput" value="@Model.User.FirstName @Model.User.LastName"/>
+        <input type="hidden" id="thisUserID" value="@Model.User.Id"/>
         <textarea class="form-control" id="messageInput" rows="3"></textarea>
     </div>
     <button id="sendButton" class="btn btn-primary">Отправить</button>

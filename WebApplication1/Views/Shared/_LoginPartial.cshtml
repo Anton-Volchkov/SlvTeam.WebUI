@@ -24,14 +24,6 @@
             </form>
         </li>
         <li class="nav-item">
-            <form class="form-inline">
-                <button class="nav-link btn btn-link text-dark" asp-area="" asp-controller="Questions" asp-action="UnansweredQuestion">
-                    <i class="fas fa-question"></i>
-                    Мои вопросы
-                </button>
-            </form>
-        </li>
-        <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                 <button type="submit" class="nav-link btn btn-link text-dark">
                     <i class="fas fa-sign-out-alt"></i>
@@ -49,7 +41,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login" asp-route-returnUrl="@Url.Action("Profile","Profiles")">
                 <i class="fas fa-sign-in-alt"></i>
                 Войти
             </a>

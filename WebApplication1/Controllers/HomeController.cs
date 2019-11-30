@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SlvTeam.Application.Chat.Queries.GetAllMessages;
 using SlvTeam.Application.News.Queries.GetAllNews;
 using SlvTeam.Domain.Entities;
 using SlvTeam.Domain.Models;
@@ -37,7 +38,16 @@ namespace WebApplication1.Controllers
             {
                 return View("Index");
             }
-            return View(user);
+
+            var messages = await _mediator.Send(new GetAllMessagesCommand());
+
+            var model = new ChatViewModel()
+            {
+                Messages = messages.OrderBy(x=>x.When).ToArray(),
+                User = user
+            };
+
+            return View(model);
         }
         public async Task<IActionResult> Index()
         {

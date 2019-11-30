@@ -1,5 +1,9 @@
 ﻿"use strict";
 
+$(document).ready(function() {
+    $('body, html').scrollTop($(document).height());
+})
+
 var connection = new signalR.HubConnectionBuilder().withUrl("/ChatHub").build();
 
 //Disable send button until connection is established
@@ -22,9 +26,9 @@ connection.on("ReceiveMessage", function (user, message) {
    
 
     if (user == currentuser ) {
-        container.classList.add("ChatContainerSender", "bg-light", "col-7" ,"offset-5","text-right");
+        container.classList.add("ChatContainerSender", "bg-light", "col-5" ,"offset-7","text-right");
     } else {
-        container.classList.add("ChatContainerRecipient", "bg-light","col-7");
+        container.classList.add("ChatContainerRecipient", "bg-light","col-5");
     }
 
     var  sender = document.createElement('p');
@@ -63,6 +67,9 @@ document.getElementById("sendButton").addEventListener("click", function (event)
 
     var user = document.getElementById("userInput").value;
     var message = document.getElementById("messageInput").value;
+    var userID = document.getElementById("thisUserID").value;
+
+    AddMessage(userID, message);
 
     document.getElementById("messageInput").value = "";
     $('body, html').scrollTop($(document).height());
@@ -72,3 +79,15 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     });
     event.preventDefault();
 });
+
+function AddMessage( userID, text ) {
+    $.ajax({
+        type: "POST",
+        url: "/Chat/AddMessage/",
+        data: { UserId: userID, Text: text },
+        success: function (data) {
+        },
+        error: function () {
+        }
+    });
+}
