@@ -30,7 +30,7 @@ namespace SlvTeam.Application.Chat.Commands.AddMessage
                 Text = request.Text
             };
 
-            _db.Messages.AddAsync(msg);
+             await _db.Messages.AddAsync(msg);
 
             await _db.SaveChangesAsync();
 

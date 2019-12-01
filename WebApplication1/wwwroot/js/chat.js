@@ -39,11 +39,18 @@ connection.on("ReceiveMessage", function (user, message) {
 
     var when = document.createElement('span');
     var currentdate = new Date();
-    when.innerHTML =
-        (currentdate.getMonth() + 1) + "/"
-        + currentdate.getDate() + "/"
+
+    var dd = currentdate.getDate();
+
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+
+    when.innerHTML = dd
+        + "." +
+        (currentdate.getMonth() + 1) + "."
         + currentdate.getFullYear() + " "
-        + currentdate.toLocaleString('ru-RU', { hour: 'numeric', minute: 'numeric', hour12: false })
+        + currentdate.toLocaleString('ru-RU', { hour: 'numeric', minute: 'numeric',second: 'numeric', hour12: false })
 
     var EmptyDiv = document.createElement('div');
 
