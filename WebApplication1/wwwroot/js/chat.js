@@ -20,7 +20,7 @@ connection.on("ReceiveMessage", function (user, message) {
 
     var chat = document.getElementById("messagesList");
 
-    var currentuser = document.getElementById("userInput").value;
+    var currentuser = document.getElementById("userName").value;
 
     var container = document.createElement('div');
    
@@ -72,7 +72,7 @@ connection.start().then(function () {
 
 document.getElementById("sendButton").addEventListener("click", function (event) {
 
-    var user = document.getElementById("userInput").value;
+    var user = document.getElementById("userName").value;
     var message = document.getElementById("messageInput").value;
     var userID = document.getElementById("thisUserID").value;
 

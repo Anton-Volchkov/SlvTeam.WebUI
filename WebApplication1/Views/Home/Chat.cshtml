@@ -37,8 +37,8 @@
 <div class="jumbotron col-md-12">
 
     <div class="form-group">
-        <label for="exampleFormControlTextarea1">Сообщение</label>
-        <input type="hidden" id="userInput" value="@Model.User.FirstName @Model.User.LastName"/>
+        <label >Сообщение</label>
+        <input type="hidden" id="userName" value="@Model.User.FirstName @Model.User.LastName"/>
         <input type="hidden" id="thisUserID" value="@Model.User.Id"/>
         <textarea class="form-control" id="messageInput" rows="3"></textarea>
     </div>
