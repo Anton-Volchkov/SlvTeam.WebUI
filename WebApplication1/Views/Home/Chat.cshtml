@@ -11,9 +11,9 @@
             string classes = msg.SlvTeamUserID == Model.User.Id? "ChatContainerSender bg-light col-5 offset-7 text-right" : "ChatContainerRecipient bg-light col-5";
 
             <div id="msg @msg.Id" class="@classes">
-                <p class="ChatSender">
-                    @msg.UserName
-                </p>
+                <a asp-controller="Profiles" asp-action="ProfileDetails" asp-route-userID="@msg.SlvTeamUserID">
+                    <p class="ChatSender" style="color: black;">@msg.UserName</p>
+                </a>
                 <p>
                     @msg.Text
                 </p>
