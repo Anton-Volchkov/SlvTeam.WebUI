@@ -33,6 +33,8 @@ a {
 -------------------------------------------------- */
 html {
   font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 @media (min-width: 768px) {
   html {
@@ -58,10 +60,7 @@ button.accept-policy {
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
+
 
 body {
   /* Margin bottom by footer height */
@@ -74,19 +73,6 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
-
- .polaroid {
-     position: relative;
- }
- .polaroid img {
-     border: 25px solid #fafafa;
-     border-top-width: 35px;
-     border-bottom-width: 100px;
-     -webkit-box-shadow: 3px 3px 6px 4px #888;
-     -moz-box-shadow: 3px 3px 6px 4px #888;
-     box-shadow: 3px 3px 6px 4px #888;
- }
-
  
  /* Chat containers */
 .ChatContainerRecipient {
@@ -110,7 +96,6 @@ body {
      font-size: 0.9em;
      font-weight: bold;
      font-family: 'Shadows Into Light', cursive;
-
  }
 
  .ChatTimeLeft {

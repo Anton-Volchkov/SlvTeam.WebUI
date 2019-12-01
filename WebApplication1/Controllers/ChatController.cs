@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SlvTeam.Application.Chat.Commands.AddMessage;
 using WebApplication1.Data;
@@ -17,6 +18,7 @@ namespace SlvTeam.WebUI.Controllers
             _mediator = mediator;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task AddMessage(string text, string userId)
         {
