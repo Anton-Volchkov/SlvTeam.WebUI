@@ -23,6 +23,11 @@
         <a class="btn btn-primary col-md-12" asp-area="" asp-controller="Questions" asp-action="UnansweredQuestion">
             <i class="fas fa-question"></i>
             Мои вопросы
+            @if(Model.CountNewMessages > 0)
+            {
+                @Model.CountNewMessages
+                <i class="fas fa-envelope"></i>
+            }
         </a>
 
         @if(Model.User.IsSlvTeam)

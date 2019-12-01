@@ -7,5 +7,7 @@ namespace SlvTeam.Domain.Models
         public SlvTeamUser User { get; set; }
 
         public Question[] Questions { get; set; }
+
+        public int CountNewMessages { get; set; }
     }
 }

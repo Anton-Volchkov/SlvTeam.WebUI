@@ -9,6 +9,7 @@ using SlvTeam.Application.Profiles.Commands.EditProfile;
 using SlvTeam.Application.Profiles.Queries.GetProfileById;
 using SlvTeam.Application.Profiles.Queries.GetSlvTeamProfiles;
 using SlvTeam.Application.Questions.Queries.GetAnsweredQuestion;
+using SlvTeam.Application.Questions.Queries.GetUnansweredQuestion;
 using SlvTeam.Domain.Entities;
 using SlvTeam.Domain.Models;
 using WebApplication1.Data;
@@ -105,11 +106,13 @@ namespace WebApplication1.Controllers
         {
             var user = await _manager.GetUserAsync(User);
             var questions = await _mediator.Send(new GetAnsweredQuestionCommand { UserID = user.Id });
+            var countMessage = await _mediator.Send(new GetUnansweredQuestionCommand() { UserID = user.Id });
 
             var model = new UserProfileModel
             {
                 Questions = questions.Reverse().ToArray(),
-                User = user
+                User = user,
+                CountNewMessages = countMessage.Length
             };
             return View(model);
         }
