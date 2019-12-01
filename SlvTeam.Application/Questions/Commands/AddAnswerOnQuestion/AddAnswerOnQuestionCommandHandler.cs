@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,7 @@ namespace SlvTeam.Application.Questions.Commands.AddAnswerOnQuestion
             }
 
             question.TextAnswer = request.Answer;
+            question.TimeAnswer = DateTime.Now.ToString("G");
 
             await _db.SaveChangesAsync(cancellationToken);
 
