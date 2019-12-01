@@ -18,8 +18,8 @@ namespace SlvTeam.Application.Chat.Commands.DeleteAllMessage
         }
         public async Task<bool> Handle(DeleteAllMessageCommand request, CancellationToken cancellationToken)
         {
-            var messages = await _db.Messages.ToArrayAsync();
-           _db.Messages.RemoveRange(messages);
+      
+           _db.Messages.RemoveRange(_db.Messages);
 
            await _db.SaveChangesAsync();
 
