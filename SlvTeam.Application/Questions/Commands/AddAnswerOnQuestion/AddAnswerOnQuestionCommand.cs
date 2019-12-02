@@ -6,5 +6,6 @@ namespace SlvTeam.Application.Questions.Commands.AddAnswerOnQuestion
     {
         public string Answer { get; set; }
         public int IdQuestion { get; set; }
+        public string UserID { get; set; }
     }
 }

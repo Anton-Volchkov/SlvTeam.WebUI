@@ -38,7 +38,13 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteQuestion(int questionID, string returnUrl = "")
         {
-            await _mediator.Send(new DeleteQuestionByIdCommand { QuestionID = questionID });
+            var user = await _manager.GetUserAsync(User);
+
+            await _mediator.Send(new DeleteQuestionByIdCommand
+            {
+                QuestionID = questionID,
+                UserID = user.Id
+            });
 
             return LocalRedirect(returnUrl);
         }
@@ -47,10 +53,12 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<IActionResult> SetAnswerOnQuestion(string textAnswer, int questionID)
         {
+            var user = await _manager.GetUserAsync(User);
             await _mediator.Send(new AddAnswerOnQuestionCommand
             {
                 Answer = textAnswer,
-                IdQuestion = questionID
+                IdQuestion = questionID,
+                UserID = user.Id
             });
 
             return RedirectToAction("UnansweredQuestion", "Questions");

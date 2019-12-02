@@ -19,7 +19,7 @@ namespace SlvTeam.Application.Questions.Commands.DeleteQuestionById
         {
             var question = await _db.Questions.FirstOrDefaultAsync(x => x.Id == request.QuestionID);
 
-            if(question is null)
+            if(question is null || question.FromUserID != request.UserID)
             {
                 return false;
             }
