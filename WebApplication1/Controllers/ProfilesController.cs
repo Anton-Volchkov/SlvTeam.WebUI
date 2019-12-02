@@ -93,6 +93,11 @@ namespace WebApplication1.Controllers
         {
             var user = await _manager.GetUserAsync(User);
 
+            if(user.Id != newUser.Id)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             await _mediator.Send(new EditProfileCommand
             {
                 Model = newUser
