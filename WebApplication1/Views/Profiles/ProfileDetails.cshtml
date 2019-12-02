@@ -6,12 +6,26 @@
 
 <div class="row">
 
-    <div class="card col-md-4 text-center m-2">
-        <img class="card-img-top img-thumbnail" style="max-height: 350px;"src="/UserImages/@Model.User.ImageName"/>
-        <div class="card-body">
-            <br/>
+    <div class="col-md-4">
+        <div class="card col-md-12 text-center m-2">
+            <img class="card-img-top img-thumbnail" style="max-height: 350px;"src="/UserImages/@Model.User.ImageName"/>
+            <div class="card-body">
+                <br/>
+            </div>
         </div>
+
+        <br/>
+        <div class="col-md-12 btn-group-vertical">
+            
+            <a href="#FormWithQuestion" class="btn btn-info col-md-12" id="showFormWithQuestion">
+                <i class="fas fa-comments"></i>
+                Задать анонимный вопрос
+            </a>
+
+        </div>
+
     </div>
+
 
     <div class="col-md-7">
         <br/>
@@ -38,13 +52,6 @@
         </table>
     </div>
     <br/>
-    <br/>
-</div>
-
-<div class="text-center">
-    <a href="#FormWithQuestion" class="btn btn-info text-center" id="showFormWithQuestion">
-        Задать пользователю анонимный вопрос
-    </a>
     <br/>
 </div>
 
