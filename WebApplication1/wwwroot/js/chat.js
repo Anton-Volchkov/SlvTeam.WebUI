@@ -26,9 +26,9 @@ connection.on("ReceiveMessage", function (user, message) {
    
 
     if (user == currentuser ) {
-        container.classList.add("ChatContainerSender", "bg-light", "col-5" ,"offset-7","text-right");
+        container.classList.add("ChatContainerSender", "bg-light", "col-7" ,"offset-5","text-right");
     } else {
-        container.classList.add("ChatContainerRecipient", "bg-light","col-5");
+        container.classList.add("ChatContainerRecipient", "bg-light","col-7");
     }
 
     var  sender = document.createElement('p');

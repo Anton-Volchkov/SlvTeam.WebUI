@@ -8,7 +8,7 @@
     <div id="messagesList" class="row">
         @foreach(var msg in Model.Messages)
         {
-            string classes = msg.SlvTeamUserID == Model.User.Id? "ChatContainerSender bg-light col-5 offset-7 text-right" : "ChatContainerRecipient bg-light col-5";
+            string classes = msg.SlvTeamUserID == Model.User.Id? "ChatContainerSender bg-light col-7 offset-5 text-right" : "ChatContainerRecipient bg-light col-7";
 
             <div id="msg @msg.Id" class="@classes">
                 <a asp-controller="Profiles" asp-action="ProfileDetails" asp-route-userID="@msg.SlvTeamUserID">
