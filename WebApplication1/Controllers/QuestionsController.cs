@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SlvTeam.Application.Questions.Commands.AddAnswerOnQuestion;
@@ -33,6 +34,7 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Success", "Home");
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> DeleteQuestion(int questionID, string returnUrl = "")
         {
@@ -41,6 +43,7 @@ namespace WebApplication1.Controllers
             return LocalRedirect(returnUrl);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> SetAnswerOnQuestion(string textAnswer, int questionID)
         {
@@ -53,6 +56,7 @@ namespace WebApplication1.Controllers
             return RedirectToAction("UnansweredQuestion", "Questions");
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> UnansweredQuestion()
         {
