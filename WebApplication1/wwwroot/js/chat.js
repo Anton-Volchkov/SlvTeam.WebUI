@@ -13,11 +13,6 @@ connection.on("ReceiveMessage", function (user, message) {
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     var encodedMsg = msg;
 
-    if (msg.trim() =="") {
-        return;
-    }
-
-
     var chat = document.getElementById("messagesList");
 
     var currentuser = document.getElementById("userName").value;
@@ -67,8 +62,13 @@ connection.start().then(function () {
 
 document.getElementById("sendButton").addEventListener("click", function (event) {
 
-    var user = document.getElementById("userName").value;
     var message = document.getElementById("messageInput").value;
+
+    if (message.trim() == "") {
+        return;
+    }
+
+    var user = document.getElementById("userName").value;
     var userID = document.getElementById("thisUserID").value;
 
     AddMessage(userID, message);
