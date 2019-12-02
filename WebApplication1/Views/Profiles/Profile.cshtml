@@ -90,18 +90,21 @@
 
 <br/>
 
-<div style="display: none" id="FormWithNews" class="jumbotron  mb-6">
-    <h4 class="display-4">Что нового?</h4>
-    <small>Не забывайте, вы пишите от лица всей SlvTeam</small>
-    <hr class="my-4">
-    <form asp-antiforgery="true" asp-action="CreateNews" asp-controller="SlvTeamNews">
-        <div class="form-group">
-            <textarea required="" placeholder="Введите новость..." class="form-control" name="textNews" rows="3"></textarea>
-            <input type="hidden" name="userID" value="@Model.User.Id"/>
-        </div>
-        <button type="submit" class="btn btn-primary">Отправить</button>
-    </form>
-</div>
+@if(Model.User.IsSlvTeam)
+{
+    <div style="display: none" id="FormWithNews" class="jumbotron  mb-6">
+        <h4 class="display-4">Что нового?</h4>
+        <small>Не забывайте, вы пишите от лица всей SlvTeam</small>
+        <hr class="my-4">
+        <form asp-antiforgery="true" asp-action="CreateNews" asp-controller="SlvTeamNews">
+            <div class="form-group">
+                <textarea required="" placeholder="Введите новость..." class="form-control" name="textNews" rows="3"></textarea>
+                <input type="hidden" name="userID" value="@Model.User.Id"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+    </div>
+}
 
 <h4 class="text-center">
     Ответы на вопросы
