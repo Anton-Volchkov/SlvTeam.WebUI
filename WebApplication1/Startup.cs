@@ -62,6 +62,7 @@ namespace WebApplication1
                         options.Password.RequireNonAlphanumeric = false;
                         options.Password.RequiredUniqueChars = 0;
                     })
+                    .AddDefaultUI()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddHangfire(config => { config.UseMemoryStorage(); });
