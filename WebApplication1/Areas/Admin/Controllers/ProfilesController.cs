@@ -22,9 +22,9 @@ namespace WebApplication1.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult AllUsers()
+        public async Task<IActionResult> AllUsers()
         {
-            var users = _mediator.Send(new GetAllProfilesCommnad()).Result;
+            var users = await _mediator.Send(new GetAllProfilesCommnad());
             return View(users);
         }
 
