@@ -38,6 +38,10 @@ html {
   }
 }
 
+main {
+    padding-bottom: 70px;
+}
+
 .border-top {
   border-top: 1px solid #e5e5e5;
 }
