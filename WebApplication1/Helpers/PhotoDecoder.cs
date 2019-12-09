@@ -22,11 +22,11 @@ namespace SlvTeam.WebUI.Helpers
             var users = _db.Users.Where(x => x.ImageBytes != null).ToArray();
 
             foreach(var user in users)
-                using(var fs = new FileStream(_appEnvironment.WebRootPath + "/UserImages/" + user.ImageName,
+               await using(var fs = new FileStream(_appEnvironment.WebRootPath + "/UserImages/" + user.ImageName,
                                               FileMode.OpenOrCreate))
-                {
-                    fs.Write(user.ImageBytes, 0, user.ImageBytes.Length);
-                }
+               {
+                   await fs.WriteAsync(user.ImageBytes, 0, user.ImageBytes.Length);
+               }
         }
     }
 }
